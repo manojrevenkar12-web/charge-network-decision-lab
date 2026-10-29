@@ -2,7 +2,7 @@
 
 **How much energy will the existing network sell in the next twelve months?**
 
-The existing network will sell about 532 GWh in the next twelve months, +32% on the last twelve.
+The existing network will sell about 535 GWh in the next twelve months, +32% on the last twelve.
 
 ## Decision
 
@@ -10,7 +10,7 @@ Plan energy purchasing and grid capacity on this figure; growth slows at the bus
 
 ## What this rests on
 
-- Chosen on a backtest of the last twelve months: the capacity-aware site model missed countries by 4.0% a month on average.
+- Chosen on a backtest of the last twelve months: the capacity-aware site model missed countries by 4.2% a month on average.
 - seasonal naive with growth: 6.9%.
 - exponential smoothing: 5.9%.
 - a gradient-boosted model over all sites: 11.6%.

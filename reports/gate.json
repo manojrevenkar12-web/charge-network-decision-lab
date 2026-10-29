@@ -29,12 +29,12 @@
     {
       "check": "forecast: country MAPE",
       "passed": true,
-      "detail": "3.6%"
+      "detail": "3.7%"
     },
     {
       "check": "forecast: interval coverage",
       "passed": true,
-      "detail": "60%"
+      "detail": "61%"
     },
     {
       "check": "rollout: share of the oracle's NPV",

@@ -100,6 +100,6 @@ export interface Evaluation {
   price_change: { truth_log: number; range_covers_truth: boolean; methods: Array<{ method: string; covers: boolean; error: number }>; decision_correct: boolean };
   trial: Record<string, { truth: number; estimate: number; covers: boolean }> & { true_net_value_per_site_day: number; decision_correct: boolean | null };
   competitor: { available: boolean; synthetic_control: { truth: number | null; covers: boolean | null }; pooled: { truth: number; covers: boolean } };
-  forecast: { mape_country: number; coverage_country: number; nominal: number; true_total_gwh?: number; months: number };
+  forecast: { mape_country: number; coverage_country: number; nominal: number; true_total_gwh?: number; forecast_total_gwh?: number; forecast_total_lo_gwh?: number; forecast_total_hi_gwh?: number; months: number };
   rollout: { oracle_npv_eur: number; plans: Record<string, { true_npv_eur: number; share_of_oracle: number }> };
 }

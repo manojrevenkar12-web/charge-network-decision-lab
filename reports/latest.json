@@ -1,6 +1,6 @@
 {
   "generated_by": "cndl run",
-  "seconds": 163,
+  "seconds": 164,
   "rows": {
     "sites": 1200,
     "daily": 1325381,
@@ -27,8 +27,8 @@
         },
         {
           "method": "twfe",
-          "estimate": 0.0149798689822775,
-          "error": 0.09709231172192966,
+          "estimate": 0.014979868982277409,
+          "error": 0.09709231172192956,
           "covers": false
         },
         {
@@ -94,43 +94,47 @@
     },
     "forecast": {
       "months": 11,
-      "mape_country": 0.03629002700742021,
-      "mape_total": 0.021724045678615654,
-      "bias_total": -0.020111733685757915,
-      "coverage_country": 0.5950413223140496,
-      "coverage_total": 0.0,
-      "nominal": 0.8
+      "mape_country": 0.036859275459210895,
+      "mape_total": 0.024722160061541418,
+      "bias_total": -0.025270126295594886,
+      "coverage_country": 0.6115702479338843,
+      "coverage_total": 0.9090909090909091,
+      "nominal": 0.8,
+      "true_total_gwh": 481.671287,
+      "forecast_total_gwh": 494.15874078983114,
+      "forecast_total_lo_gwh": 459.9846656057606,
+      "forecast_total_hi_gwh": 506.18641104852543
     },
     "rollout": {
       "oracle_npv_eur": 478033628.1378739,
       "plans": {
         "highest_traffic": {
           "true_npv_eur": 276056525.7101954,
-          "expected_npv_eur": 343432527.60767835,
+          "expected_npv_eur": 348024373.8289835,
           "regret_eur": 201977102.42767847,
           "share_of_oracle": 0.5774834853889725
         },
         "expected_npv_greedy": {
-          "true_npv_eur": 389257348.93631816,
-          "expected_npv_eur": 491026518.3508639,
-          "regret_eur": 88776279.20155573,
-          "share_of_oracle": 0.8142886316442345
+          "true_npv_eur": 389063611.5072163,
+          "expected_npv_eur": 497195692.00161517,
+          "regret_eur": 88970016.63065761,
+          "share_of_oracle": 0.8138833517273036
         },
         "optimised": {
-          "true_npv_eur": 393601496.1940443,
-          "expected_npv_eur": 514354758.4797191,
-          "regret_eur": 84432131.9438296,
-          "share_of_oracle": 0.8233761664995715
+          "true_npv_eur": 394179070.4936577,
+          "expected_npv_eur": 519507373.06981117,
+          "regret_eur": 83854557.64421618,
+          "share_of_oracle": 0.8245843959328507
         },
         "optimised_risk": {
           "true_npv_eur": 393601496.1940443,
-          "expected_npv_eur": 514354758.4797191,
+          "expected_npv_eur": 519490642.80145997,
           "regret_eur": 84432131.9438296,
           "share_of_oracle": 0.8233761664995715
         }
       },
-      "rank_correlation_npv": 0.6984935400477246,
-      "coverage_p10_p90": 0.8435714285714285
+      "rank_correlation_npv": 0.6987090459885804,
+      "coverage_p10_p90": 0.8371428571428572
     }
   }
 }

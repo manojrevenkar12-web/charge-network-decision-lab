@@ -120,6 +120,9 @@ def forecast(res: dict[str, Any], truth_dir: Path) -> dict[str, Any]:
         "nominal": res["interval"],
         "true_total_gwh": float(tot.kwh_true.sum() / 1e6),
         "forecast_total_gwh": float(tot.kwh_fc.sum() / 1e6),
+        # the forecast's band over the same months as the truth (the last month may be incomplete)
+        "forecast_total_lo_gwh": float(t.lo.sum() / 1e6),
+        "forecast_total_hi_gwh": float(t.hi.sum() / 1e6),
     }
 
 

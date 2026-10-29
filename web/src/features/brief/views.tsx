@@ -147,11 +147,16 @@ export const forecastView = (r: Forecast, ev?: Evaluation): View => {
   const t0 = new Date(r.total[0]?.month ?? 0).getTime();
   const lo = r.total.reduce((s, x) => s + x.lo, 0) / 1e6;
   const hi = r.total.reduce((s, x) => s + x.hi, 0) / 1e6;
-  const truth = ev?.forecast.true_total_gwh;
+  const f = ev?.forecast;
+  // the truth covers only the months that are complete in the simulator, so compare like with like
+  const checked =
+    f?.true_total_gwh != null && f.forecast_total_gwh != null && f.forecast_total_lo_gwh != null && f.forecast_total_hi_gwh != null
+      ? [{ label: `The ${f.months} months with complete truth`, estimate: f.forecast_total_gwh, lo: f.forecast_total_lo_gwh, hi: f.forecast_total_hi_gwh, kind: "credible" as const, truth: f.true_total_gwh }]
+      : [];
   return {
     strip: {
       title: "Energy in the next twelve months",
-      rows: [{ label: "Existing network", estimate: r.next_12_months_gwh, lo, hi, kind: "credible", truth }],
+      rows: [{ label: "Existing network", estimate: r.next_12_months_gwh, lo, hi, kind: "credible", truth: undefined }, ...checked],
       format: (v) => gwh(v),
       legend: { credible: `forecast; line from the sum of the monthly ${Math.round(r.interval * 100)}% bounds`, usual: "" },
     },
@@ -170,6 +175,7 @@ export const forecastView = (r: Forecast, ev?: Evaluation): View => {
     ),
     verdicts: ev
       ? [
+          `Over the ${ev.forecast.months} complete months the network sold ${gwh(ev.forecast.true_total_gwh ?? 0)} against a forecast of ${gwh(ev.forecast.forecast_total_gwh ?? 0)}.`,
           `Countries missed by ${(ev.forecast.mape_country * 100).toFixed(1)}% a month on average over ${ev.forecast.months} months.`,
           `${Math.round(ev.forecast.coverage_country * 100)}% of country-months fell inside the ${Math.round(ev.forecast.nominal * 100)}% intervals.`,
         ]

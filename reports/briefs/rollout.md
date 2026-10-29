@@ -2,11 +2,11 @@
 
 **Which sites, and how many points each, for next year's 1,000 high-power points?**
 
-Build 107 sites with 1044 points (IT 35, GB 34, DE 29, AT 5, PL 4 sites), for €188m: expected ten-year NPV €514m, and €469m in the worst tenth of scenarios.
+Build 107 sites with 1044 points (IT 35, GB 34, DE 29, AT 5, PL 4 sites), for €188m: expected ten-year NPV €519m, and €474m in the worst tenth of scenarios.
 
 ## Decision
 
-Approve this plan. Choosing by traffic alone is expected to earn €171m less; ranking by expected NPV without looking at sites that compete with each other, €23m less.
+Approve this plan. Choosing by traffic alone is expected to earn €171m less; ranking by expected NPV without looking at sites that compete with each other, €22m less.
 
 ## What this rests on
 
