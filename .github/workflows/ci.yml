@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: astral-sh/setup-uv@v6
-      - run: uv sync --frozen
+      - run: scripts/ci-run.sh "uv sync" uv sync --frozen
       - run: scripts/ci-run.sh "ruff" uv run ruff check src tests
       - run: scripts/ci-run.sh "ruff format" uv run ruff format --check src tests
       - run: scripts/ci-run.sh "pytest" uv run pytest -q
@@ -36,7 +36,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: astral-sh/setup-uv@v6
-      - run: uv sync --frozen
+      - run: scripts/ci-run.sh "uv sync" uv sync --frozen
       - run: scripts/ci-run.sh "cndl run" uv run cndl run
       - run: scripts/ci-run.sh "first runs unchanged" git diff --exit-code -- 'reports/heldout/*/first_run.json'
       - uses: actions/upload-artifact@v4
@@ -69,7 +69,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: astral-sh/setup-uv@v6
-      - run: uv sync --frozen
+      - run: scripts/ci-run.sh "uv sync" uv sync --frozen
       - run: |
           for set in $(ls heldout); do
             [ -d "heldout/$set/worlds" ] || continue
