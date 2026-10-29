@@ -1,0 +1,15 @@
+# Tests a large, long off-peak trial (120 sites, 10 weeks ending with the history) with a deep
+# discount over a shorter night window. Off-peak share rises clearly and some peak demand moves
+# to the night, but the extra night sessions do not pay for the discount, so revenue per site-day
+# falls: the analysis must not read a big behavioural effect as a commercial success.
+seed: 8363
+
+offpeak_trial:
+  start: "2026-07-20"
+  weeks: 10
+  sites: 120
+  discount: 0.35
+  hours: [23, 0, 1, 2, 3, 4, 5]
+  offpeak_gain: 0.48
+  peak_shift: 0.09
+  carryover: 0.05

@@ -1,0 +1,14 @@
+# Tests the off-peak discount trial when it is small and short (40 sites, 6 weeks ending with the
+# history), the discount is modest, its effects are small, and much of the off-peak gain carries
+# over to the following day. A naive discount-day versus non-discount-day comparison should
+# understate the effect, and the estimate should come with honestly wide uncertainty.
+seed: 7259
+
+offpeak_trial:
+  start: "2026-08-17"
+  weeks: 6
+  sites: 40
+  discount: 0.20
+  offpeak_gain: 0.14
+  peak_shift: 0.02
+  carryover: 0.60

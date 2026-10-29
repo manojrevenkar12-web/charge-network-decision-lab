@@ -1,0 +1,35 @@
+# Tests a maturing market: BEV stock grows much more slowly in every country and passes through
+# to demand less than one to one, new sites ramp up faster, and the rollout economics are tight
+# (higher capex, site and energy costs, a smaller budget). Forecasts must not extrapolate past
+# growth, and many candidates should not be worth building.
+seed: 11621
+
+countries:
+  DE: { growth: 0.12 }
+  NL: { growth: 0.08 }
+  IT: { growth: 0.18 }
+  GB: { growth: 0.11 }
+  SE: { growth: 0.07 }
+  DK: { growth: 0.09 }
+  AT: { growth: 0.10 }
+  PL: { growth: 0.22 }
+  CZ: { growth: 0.19 }
+  HU: { growth: 0.17 }
+  RO: { growth: 0.24 }
+
+network:
+  sites: 900
+  bev_beta: 0.85
+  ramp_depth: 0.55
+  ramp_days: 120
+
+rollout:
+  candidates: 1000
+  target_points: 800
+  capex_per_point: 160000
+  site_fixed: 300000
+  opex_per_point_year: 11000
+  energy_cost_eur_kwh: 0.34
+  fees_share: 0.09
+  discount_rate: 0.09
+  budget_eur: 150000000

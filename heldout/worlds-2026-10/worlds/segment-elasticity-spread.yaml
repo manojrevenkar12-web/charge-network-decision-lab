@@ -1,0 +1,20 @@
+# Tests price sensitivity that differs a lot between segments (motorway drivers barely react,
+# retail and urban hub drivers react strongly) and between sites, with drivers adjusting to the
+# new price more slowly. A single pooled elasticity, or an effect measured in the first weeks
+# after each wave, should be clearly wrong by segment; the price increase is still targeted
+# partly on growth and on utilisation.
+seed: 6143
+
+network:
+  segments:
+    motorway:  { share: 0.18, elasticity: -0.10 }
+    urban_hub: { share: 0.22, elasticity: -1.10 }
+    retail:    { share: 0.36, elasticity: -1.40 }
+    kerbside:  { share: 0.24, elasticity: -0.35 }
+  elasticity_site_sd: 0.20
+  price_halflife_days: 40
+
+price_change:
+  select_intercept: -0.40
+  select_on_trend: 1.2
+  select_on_utilisation: 0.9

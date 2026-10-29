@@ -38,7 +38,10 @@ def price_change(r: dict[str, Any]) -> dict[str, Any]:
             "high": hi,
             "unit": "pct",
         },
-        "decision": "Keep the higher price. Revenue rises at every effect size the data allows, so the decision does not depend on the exact number.",
+        "decision": "Keep the higher price. Revenue rises at every effect size the data allows, so the decision does not depend on the exact number."
+        if r["decision"] == "keep"
+        else "Review the increase: at some effect sizes the data allows, revenue falls.",
+        "tone": "holds" if (rlo > 0) == (rhi > 0) else "flips",
         "rests_on": [
             f"{r['treated_sites']} raised sites against {r['control_sites']} unchanged ones over two years of weekly data.",
             f"The usual comparisons say sessions went up ({pct(usual['before_after'])} before and after, {pct(usual['twfe'])} with two-way fixed effects): the raised sites were growing faster.",
@@ -73,6 +76,7 @@ def trial(r: dict[str, Any]) -> dict[str, Any]:
             "high": net[2],
             "unit": "eur",
         },
+        "tone": "holds" if (net[0] > 0) == (net[2] > 0) else "flips",
         "decision": {
             "do not roll out": "Do not roll it out at 30%. The relieved daytime demand is worth less than the revenue it gives away; test a smaller discount on the busiest sites only.",
             "roll out": "Roll it out: the value of relieved daytime demand exceeds the revenue given away.",
@@ -117,6 +121,7 @@ def competitor(r: dict[str, Any]) -> dict[str, Any]:
             "high": float(np.expm1(r["ci_log"][1])),
             "unit": "pct",
         },
+        "tone": "holds",
         "decision": "Price the risk into site choices: a new site next to an existing charger should expect to lose about this share, which the rollout model includes.",
         "rests_on": [
             f"A synthetic control from {r['donors']} motorway high-power sites without a competitor or a price change, matching the site's path before the opening (pre-period error {r['pre_rmspe'] * 100:.1f}%).",
@@ -146,6 +151,7 @@ def forecast(r: dict[str, Any]) -> dict[str, Any]:
         "question": r["question"],
         "answer": f"The existing network will sell about {nxt:,.0f} GWh in the next twelve months, {(nxt / last - 1) * 100:+.0f}% on the last twelve.",
         "number": {"label": "GWh, next 12 months", "value": nxt, "low": lo, "high": hi, "unit": "gwh"},
+        "tone": "holds",
         "decision": "Plan energy purchasing and grid capacity on this figure; growth slows at the busiest sites as their chargers fill up.",
         "rests_on": [
             f"Chosen on a backtest of the last twelve months: {names[r['chosen']]} missed countries by {bt['mape_country'] * 100:.1f}% a month on average.",
@@ -177,6 +183,7 @@ def rollout(r: dict[str, Any]) -> dict[str, Any]:
             "high": p["expected_npv_eur"],
             "unit": "eur",
         },
+        "tone": "holds" if p["cvar_npv_eur"] > 0 else "flips",
         "decision": f"Approve this plan. Choosing by traffic alone is expected to earn {eur(p['expected_npv_eur'] - t['expected_npv_eur'])} less; ranking by expected NPV without looking at sites that compete with each other, {eur(p['expected_npv_eur'] - g['expected_npv_eur'])} less.",
         "rests_on": [
             f"Demand from a Bayesian hierarchical model of {m['training_sites']} established sites (NUTS, r-hat {m['max_r_hat']:.2f}); unexplained site-to-site variation is {m['sigma']:.2f} on the log scale, which is most of the risk.",

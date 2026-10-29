@@ -1,0 +1,22 @@
+# Tests next year's rollout in a dense network where nearby sites take more demand from each other
+# over a wider radius, with larger site options, more grid-constrained power per point, costlier
+# batteries, a bigger partner share, a higher discount rate and a longer horizon. Ranking
+# candidates one by one, without counting what nearby picks and existing sites take, should
+# overbuild clusters.
+seed: 14947
+
+network:
+  sites: 1300
+
+rollout:
+  candidates: 1550
+  target_points: 1100
+  points_options: [4, 8, 12, 16]
+  grid_kw_per_point: 240
+  battery_per_point: 75000
+  partner_share: 0.15
+  discount_rate: 0.10
+  years: 12
+  cannibalisation_km: 5.0
+  cannibalisation: 0.16
+  budget_eur: 230000000

@@ -1,0 +1,17 @@
+# Tests a saturated network: more sessions per point and lower queue capacity, so many sites run
+# close to capacity and observed sessions respond less to price and growth than demand does.
+# The 2025 increase went to the busiest sites, which were also the ones whose growth was slowing
+# (selection on utilisation with a negative weight on local trend), so the selection bias runs the
+# opposite way to the development world.
+seed: 5821
+
+network:
+  types:
+    AC:  { per_point: 2.7, cap_per_point: 6 }
+    DC:  { per_point: 4.6, cap_per_point: 18 }
+    HPC: { per_point: 6.0, cap_per_point: 24 }
+
+price_change:
+  select_intercept: -0.30
+  select_on_trend: -0.7
+  select_on_utilisation: 1.5

@@ -1,0 +1,26 @@
+# Tests a small operator: few sites and candidates, a small 2025 price increase in two waves
+# (April and September) still partly targeted on growth, fewer competitor openings and a small
+# trial. Every effect is faint relative to the noise; estimates should be close to the truth and
+# their uncertainty should honestly include it rather than claim precision.
+seed: 13901
+
+network:
+  sites: 640
+
+competitors:
+  share_of_sites: 0.12
+
+price_change:
+  delta_eur: 0.05
+  waves: ["2025-04-07", "2025-09-01"]
+  select_intercept: -0.50
+  select_on_trend: 1.0
+  select_on_utilisation: 0.6
+
+offpeak_trial:
+  sites: 30
+
+rollout:
+  candidates: 650
+  target_points: 500
+  budget_eur: 95000000

@@ -1,0 +1,20 @@
+# Tests a noisy, unreliable network: overdispersed daily sessions, larger and more persistent
+# country shocks (weather, holidays), more spread in site quality, stronger summer and winter
+# seasonality, and outages that are more than twice as frequent and last longer. Forecasts and
+# effect estimates should still be calibrated, and availability has to be accounted for.
+seed: 10589
+
+network:
+  sites: 1350
+  quality_sd: 0.45
+  dispersion: 9
+  country_shock_sd: 0.09
+  country_shock_ar: 0.85
+  seasonality:
+    motorway: { annual: 0.30 }
+    retail:   { annual: 0.12 }
+
+outages:
+  daily_rate: 0.030
+  mean_days: 4.0
+  demand_loss: 0.75

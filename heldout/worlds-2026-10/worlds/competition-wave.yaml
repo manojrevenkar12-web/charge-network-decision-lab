@@ -1,0 +1,13 @@
+# Tests heavy competition: almost three in ten sites get a competitor nearby, the openings bunch
+# up between mid-2024 and early 2026 (overlapping the 2025 price waves), effects are larger and
+# vary more, hit urban hubs harder, and phase in over three months. Competitor effects, the
+# synthetic-control case and the price-increase estimate all have to be separated from each other.
+seed: 9479
+
+competitors:
+  share_of_sites: 0.28
+  window: ["2024-06-01", "2026-03-31"]
+  effect_mean: -0.22
+  effect_sd: 0.08
+  urban_extra: -0.09
+  phase_in_days: 90

@@ -118,6 +118,8 @@ def forecast(res: dict[str, Any], truth_dir: Path) -> dict[str, Any]:
         "coverage_country": float(np.mean((j.kwh_true >= j.lo) & (j.kwh_true <= j.hi))),
         "coverage_total": float(np.mean((t.kwh_true >= t.lo) & (t.kwh_true <= t.hi))),
         "nominal": res["interval"],
+        "true_total_gwh": float(tot.kwh_true.sum() / 1e6),
+        "forecast_total_gwh": float(tot.kwh_fc.sum() / 1e6),
     }
 
 

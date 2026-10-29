@@ -40,9 +40,14 @@ def write_json(path: Path, obj: Any) -> None:
 def build_world(
     world_file: Path | None = None, overrides: dict[str, Any] | None = None, data: Path = DATA, truth: Path = TRUTH
 ) -> dict[str, int]:
+    import yaml
+
+    from .settings import ROOT
     from .sim.world import build, load_config, write
 
-    cfg = load_config(world_file or Path("config/world.yaml"), overrides)
+    # a world file holds only what differs from config/world.yaml
+    extra = yaml.safe_load(Path(world_file).read_text()) if world_file else {}
+    cfg = load_config(ROOT / "config" / "world.yaml", {**(extra or {}), **(overrides or {})})
     return write(build(cfg), data, truth)
 
 

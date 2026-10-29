@@ -1,0 +1,33 @@
+# Tests a large network weighted towards fast-growing central and eastern European markets, with
+# slow, deep ramp-ups of new sites and more spread in local growth. Much of the history is sites
+# still ramping, so a forecast has to separate ramp-up from market growth. The rollout is bigger,
+# cheaper per point, but candidate grid connections more often need batteries.
+seed: 12757
+
+countries:
+  DE: { growth: 0.28, share: 0.18 }
+  NL: { share: 0.06 }
+  IT: { growth: 0.38, share: 0.10 }
+  GB: { share: 0.10 }
+  SE: { share: 0.05 }
+  DK: { share: 0.05 }
+  AT: { share: 0.05 }
+  PL: { growth: 0.48, share: 0.14 }
+  CZ: { growth: 0.42, share: 0.10 }
+  HU: { growth: 0.40, share: 0.08 }
+  RO: { growth: 0.50, share: 0.09 }
+
+network:
+  sites: 1450
+  local_trend_sd: 0.14
+  ramp_depth: 0.75
+  ramp_days: 240
+
+rollout:
+  candidates: 1600
+  target_points: 1200
+  capex_per_point: 120000
+  site_fixed: 220000
+  grid_kw_per_point: 230
+  battery_per_point: 70000
+  budget_eur: 210000000

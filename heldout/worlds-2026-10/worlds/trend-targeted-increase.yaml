@@ -1,0 +1,14 @@
+# Tests the 2025 price increase when country managers targeted it very strongly at sites whose
+# (unseen) local demand was already growing fast, with a slightly larger increase and more spread
+# in local trends. A before-and-after or plain two-way fixed effects comparison should understate
+# the session loss by a lot more than on the development world.
+seed: 3117
+
+network:
+  local_trend_sd: 0.15
+
+price_change:
+  delta_eur: 0.12
+  select_intercept: -0.20
+  select_on_trend: 2.6
+  select_on_utilisation: 0.3

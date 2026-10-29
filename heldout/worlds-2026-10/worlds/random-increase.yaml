@@ -1,0 +1,14 @@
+# Tests the 2025 price increase when it was effectively given at random (head office picked sites
+# by lottery, not on growth or utilisation), with a smaller increase and calmer local trends.
+# Here the simple comparison is roughly right; an analysis that always "corrects" for selection
+# on growth should not move the estimate away from the truth.
+seed: 4409
+
+network:
+  local_trend_sd: 0.08
+
+price_change:
+  delta_eur: 0.08
+  select_intercept: -0.55
+  select_on_trend: 0.0
+  select_on_utilisation: 0.0

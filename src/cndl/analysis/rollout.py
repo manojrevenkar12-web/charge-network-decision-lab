@@ -108,8 +108,8 @@ def optimise(
     mean_v = V[:, idx, :].mean(axis=0)  # n x K
     h = highspy.Highs()
     h.setOptionValue("output_flag", False)
-    h.setOptionValue("time_limit", 120.0)
-    h.setOptionValue("mip_rel_gap", 0.002)
+    h.setOptionValue("time_limit", 45.0)
+    h.setOptionValue("mip_rel_gap", 0.005)
     inf = highspy.kHighsInf
     # columns: x (n*K binaries), y (pairs, continuous [0,1]), then eta and u (S) if risk
     nx, ny = n * K, len(pairs)

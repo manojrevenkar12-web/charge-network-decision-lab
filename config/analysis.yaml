@@ -5,7 +5,7 @@ price_change:
   pre_weeks: 26               # event-study leads shown
   post_weeks: 52
   pretrend_alpha: 0.05        # a joint pre-trend test below this sends the analysis to trend-adjusted methods
-  bootstrap: 300
+  bootstrap: 200
 offpeak_trial:
   hours: [22, 23, 0, 1, 2, 3, 4, 5, 6]
   discount: 0.30
