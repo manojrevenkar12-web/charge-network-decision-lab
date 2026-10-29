@@ -23,6 +23,11 @@ def run_set(name: str, log: Any = print) -> dict[str, Any]:
     for w in worlds:
         build = ROOT / "build" / "heldout" / name / w.stem
         reports = build / "reports"
+        record = build / "record.json"
+        # resumable: a world already run keeps its record (runs can outlive one session's time limit)
+        if record.exists():
+            out["worlds"][w.stem] = json.loads(record.read_text())
+            continue
         env = {**os.environ, "CNDL_BUILD": str(build), "CNDL_REPORTS": str(reports)}
         t0 = time.perf_counter()
         p = subprocess.run(
@@ -36,6 +41,8 @@ def run_set(name: str, log: Any = print) -> dict[str, Any]:
         else:
             rec["error"] = (p.stderr or p.stdout)[-2000:]
         out["worlds"][w.stem] = rec
+        record.parent.mkdir(parents=True, exist_ok=True)
+        record.write_text(json.dumps(rec))
         state = "error" if "gate" not in rec else ("gate pass" if rec["gate"]["passed"] else "gate fail")
         log(f"{w.stem}: {state} ({rec['seconds']} s)")
     out["summary"] = summarise(out["worlds"])
