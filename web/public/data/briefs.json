@@ -1,0 +1,129 @@
+[
+  {
+    "id": "price-change",
+    "title": "The 2025 price increase",
+    "question": "What did the 2025 price increase do to sessions and revenue?",
+    "answer": "It cost between 1% and 10% of sessions at the raised sites, and raised their revenue by 7% to 18%.",
+    "number": {
+      "label": "sessions lost",
+      "value": -0.05139252454494266,
+      "low": -0.09634330900739757,
+      "high": -0.006441740082487757,
+      "unit": "pct"
+    },
+    "decision": "Keep the higher price. Revenue rises at every effect size the data allows, so the decision does not depend on the exact number.",
+    "tone": "holds",
+    "rests_on": [
+      "290 raised sites against 408 unchanged ones over two years of weekly data.",
+      "The usual comparisons say sessions went up (+4.1% before and after, +1.5% with two-way fixed effects): the raised sites were growing faster.",
+      "The weeks before each increase show it: the raised sites pulled ahead by 0.18% a week before anything changed (p = 1e-08).",
+      "Two methods that allow for that disagree in a known direction: controls reweighted to grow like the raised sites (synthetic DiD) give the smaller loss, each site's own growth continued (trend imputation) the larger one."
+    ],
+    "would_change": [
+      "A randomised price test, which would narrow the range to a single number (question 2 shows how).",
+      "Evidence that growth at the raised sites was about to slow sharply, which would move the answer towards the smaller loss."
+    ],
+    "method": "Before/after, two-way fixed effects, imputation (Borusyak, Jaravel and Spiess), event study, synthetic DiD (Arkhangelsky et al.), capacity-aware trend imputation; site bootstrap."
+  },
+  {
+    "id": "night-discount",
+    "title": "The night discount trial",
+    "question": "Should the night discount go network-wide?",
+    "answer": "The 30% night discount moves 4.2 points of energy to the night and cuts daytime sessions by 6%, but costs \u20ac143 of revenue per site and day.",
+    "number": {
+      "label": "net value per site and day",
+      "value": -124.50464060023634,
+      "low": -160.7475021202846,
+      "high": -88.30271302345176,
+      "unit": "eur"
+    },
+    "tone": "holds",
+    "decision": "Do not roll it out at 30%. The relieved daytime demand is worth less than the revenue it gives away; test a smaller discount on the busiest sites only.",
+    "rests_on": [
+      "80 sites, 4480 site-days, discount assigned by coin flip each day (randomisation p = 0.002).",
+      "Designed from pre-trial data: the trial could detect \u20ac32 a day (1.5% of revenue) with 80% power.",
+      "Yesterday's discount still shifts a little charging today (0.4 points), so the model separates the two.",
+      "An always-valid sequential test would have stopped the trial on day 7."
+    ],
+    "would_change": [
+      "A higher value of a relieved daytime session than \u20ac4 (grid peak charges, queues), which would have to exceed about \u20ac31 to pay."
+    ],
+    "method": "Switchback design by site and day; fixed effects for site and date with yesterday's assignment; clustered standard errors; randomisation inference; CUPED for design; mixture SPRT."
+  },
+  {
+    "id": "competitor",
+    "title": "A competitor next door",
+    "question": "What does a competitor's hub next to our site cost?",
+    "answer": "At AT-0201, a competitor hub opened on 2025-11-29 took about 16% of sessions. Across all 131 openings in the history the loss is 14%.",
+    "number": {
+      "label": "sessions lost at the site",
+      "value": -0.16494965374755235,
+      "low": -0.2631124902119741,
+      "high": -0.041602000991750376,
+      "unit": "pct"
+    },
+    "tone": "holds",
+    "decision": "Price the risk into site choices: a new site next to an existing charger should expect to lose about this share, which the rollout model includes.",
+    "rests_on": [
+      "A synthetic control from 75 motorway high-power sites without a competitor or a price change, matching the site's path before the opening (pre-period error 7.2%).",
+      "Placebo test: the gap is larger than at 95% of donor sites where nothing happened (p = 0.05).",
+      "Openings fall on dates nobody at EDRI chose, so the network-wide estimate can assume parallel trends."
+    ],
+    "would_change": [
+      "A second competitor or a price war nearby, which the placebo sites would not reflect."
+    ],
+    "method": "Synthetic control with an intercept and placebo inference; network-wide imputation estimator with site bootstrap."
+  },
+  {
+    "id": "forecast",
+    "title": "Energy in the next twelve months",
+    "question": "How much energy will the existing network sell in the next twelve months?",
+    "answer": "The existing network will sell about 532 GWh in the next twelve months, +32% on the last twelve.",
+    "number": {
+      "label": "GWh, next 12 months",
+      "value": 531.8379998847147,
+      "low": 520.4188072673116,
+      "high": 520.4188072673116,
+      "unit": "gwh"
+    },
+    "tone": "holds",
+    "decision": "Plan energy purchasing and grid capacity on this figure; growth slows at the busiest sites as their chargers fill up.",
+    "rests_on": [
+      "Chosen on a backtest of the last twelve months: the capacity-aware site model missed countries by 4.0% a month on average.",
+      "seasonal naive with growth: 6.9%.",
+      "exponential smoothing: 5.9%.",
+      "a gradient-boosted model over all sites: 11.6%.",
+      "The 80% intervals come from the backtest's own errors at each horizon."
+    ],
+    "would_change": [
+      "New sites or price changes, which this forecast of the existing network at today's prices does not include."
+    ],
+    "method": "Seasonal naive, AutoETS (statsforecast), LightGBM global model (mlforecast), capacity-aware site trends; conformal intervals from a rolling backtest."
+  },
+  {
+    "id": "rollout",
+    "title": "Where the next 1,000 points go",
+    "question": "Which sites, and how many points each, for next year's 1,000 high-power points?",
+    "answer": "Build 107 sites with 1044 points (IT 35, GB 34, DE 29, AT 5, PL 4 sites), for \u20ac188m: expected ten-year NPV \u20ac514m, and \u20ac469m in the worst tenth of scenarios.",
+    "number": {
+      "label": "expected NPV",
+      "value": 514354758.4797191,
+      "low": 468797752.49419993,
+      "high": 514354758.4797191,
+      "unit": "eur"
+    },
+    "tone": "holds",
+    "decision": "Approve this plan. Choosing by traffic alone is expected to earn \u20ac171m less; ranking by expected NPV without looking at sites that compete with each other, \u20ac23m less.",
+    "rests_on": [
+      "Demand from a Bayesian hierarchical model of 637 established sites (NUTS, r-hat 1.01); unexplained site-to-site variation is 0.45 on the log scale, which is most of the risk.",
+      "A nearby charging site costs demand (coefficient -0.14 per unit of proximity); the plan charges for new sites that would compete with each other.",
+      "New sites priced like the 2025 increase, with its effect from question 1, and grown with question 4's country growth.",
+      "1400 candidates, sizes of 4, 8 or 12 points, within the budget, with at least 18 Italian sites and at most a third of the points in one country."
+    ],
+    "would_change": [
+      "A different capex or energy price, which moves sizes before it moves sites.",
+      "Grid connection quotes that differ from the planning figures."
+    ],
+    "method": "NumPyro hierarchical model, posterior predictive scenarios, ten-year NPV per scenario, mixed-integer programme with CVaR (HiGHS)."
+  }
+]

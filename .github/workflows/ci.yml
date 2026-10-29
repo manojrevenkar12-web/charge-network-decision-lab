@@ -1,0 +1,83 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      heldout:
+        description: "Also rerun the held-out worlds (about two hours); first runs must not change"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    name: lint and unit tests
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen
+      - run: scripts/ci-run.sh "ruff" uv run ruff check src tests
+      - run: scripts/ci-run.sh "ruff format" uv run ruff format --check src tests
+      - run: scripts/ci-run.sh "pytest" uv run pytest -q
+
+  pipeline:
+    name: the whole run, judged by its gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen
+      - run: scripts/ci-run.sh "cndl run" uv run cndl run
+      - run: scripts/ci-run.sh "first runs unchanged" git diff --exit-code -- 'reports/heldout/*/first_run.json'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reports
+          path: reports/
+
+  web:
+    name: decision room (unit and end-to-end with the production CSP)
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 22, cache: npm, cache-dependency-path: web/package-lock.json }
+      - run: npm ci
+      - run: ../scripts/ci-run.sh "typecheck" npx tsc --noEmit
+      - run: ../scripts/ci-run.sh "unit tests" npx vitest run
+      - run: npx playwright install --with-deps chromium
+      - run: ../scripts/ci-run.sh "end-to-end" npx playwright test
+
+  heldout:
+    name: held-out worlds
+    if: github.event_name == 'workflow_dispatch' && inputs.heldout
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen
+      - run: |
+          for set in $(ls heldout); do
+            [ -d "heldout/$set/worlds" ] || continue
+            scripts/ci-run.sh "held-out $set" uv run cndl heldout "$set"
+          done
+          scripts/ci-run.sh "first runs unchanged" git diff --exit-code -- 'reports/heldout/*/first_run.json'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: heldout
+          path: reports/heldout/

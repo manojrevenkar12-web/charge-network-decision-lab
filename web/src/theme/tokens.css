@@ -1,0 +1,75 @@
+/*
+ * Decision room tokens. The page is about uncertainty, so colour carries one meaning each:
+ *   estimate  deep blue     what an analysis says
+ *   range     slate wash    how sure it is
+ *   holds     green-teal    the decision is the same everywhere in the range
+ *   flips     burnt orange  somewhere in the range the decision would change
+ *   truth     violet        the simulator's answer, shown only when asked for
+ */
+:root {
+  --paper: #f2f4f4;
+  --sheet: #ffffff;
+  --ink: #172126;
+  --ink-2: #4a5759;
+  --ink-3: #66726f;
+  --rule: #d5dcdb;
+  --rule-2: #aab5b3;
+  --range: #c9d6e3;
+  --range-2: #a7bcd3;
+  --estimate: #1d4e89;
+  --holds: #0f6e5a;
+  --holds-wash: #d9efe8;
+  --flips: #a3460d;
+  --flips-wash: #f6e3d6;
+  --truth: #7a1fa2;
+  --truth-wash: #efe0f6;
+  --focus: #1d4e89;
+
+  --font: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --narrow: 82;   /* font-stretch % for labels and the index */
+  --t-xs: 0.75rem;
+  --t-sm: 0.8125rem;
+  --t-md: 0.9375rem;
+  --t-lg: 1.125rem;
+  --t-xl: 1.5rem;
+  --t-2xl: 2rem;
+  --t-3xl: 2.75rem;
+  --lh: 1.5;
+  --lh-tight: 1.15;
+
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 72px;
+  --r-1: 3px;
+  --r-2: 8px;
+  --rail: 280px;
+  --measure: 760px;
+  --line: 1px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0f1517;
+    --sheet: #161e21;
+    --ink: #e7ecec;
+    --ink-2: #b2bcbb;
+    --ink-3: #8c9896;
+    --rule: #28322f;
+    --rule-2: #3d4946;
+    --range: #22364a;
+    --range-2: #34516f;
+    --estimate: #8db6ee;
+    --holds: #57c3a6;
+    --holds-wash: #12332b;
+    --flips: #f09a62;
+    --flips-wash: #3a2214;
+    --truth: #d39af0;
+    --truth-wash: #331a40;
+    --focus: #8db6ee;
+  }
+}
