@@ -1,0 +1,11 @@
+/build/
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+node_modules/
+dist/
+test-results/
+playwright-report/
+*.log
+.env

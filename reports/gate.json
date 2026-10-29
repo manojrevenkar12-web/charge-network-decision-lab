@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "check": "price change: range covers the truth",
+      "passed": true,
+      "detail": "truth -0.082"
+    },
+    {
+      "check": "price change: two-way fixed effects misses (the trap is armed)",
+      "passed": true,
+      "detail": "twfe error +0.097"
+    },
+    {
+      "check": "trial: intervals cover the truth",
+      "passed": true,
+      "detail": "2 of 3"
+    },
+    {
+      "check": "trial: decision matches the truth",
+      "passed": true,
+      "detail": "true net -136 EUR"
+    },
+    {
+      "check": "competitor: network-wide interval covers the truth",
+      "passed": true,
+      "detail": "truth -0.152"
+    },
+    {
+      "check": "forecast: country MAPE",
+      "passed": true,
+      "detail": "3.6%"
+    },
+    {
+      "check": "forecast: interval coverage",
+      "passed": true,
+      "detail": "60%"
+    },
+    {
+      "check": "rollout: share of the oracle's NPV",
+      "passed": true,
+      "detail": "82%"
+    },
+    {
+      "check": "rollout: beats highest_traffic",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

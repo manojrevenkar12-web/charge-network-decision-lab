@@ -1,0 +1,16 @@
+# The quality gate at the end of `cndl run`: the pipeline's answers on the development world,
+# judged against its truth. A failure blocks the run (and CI).
+price_change:
+  range_covers_truth: true
+  usual_estimate_must_miss: true    # the world is built so the usual estimate is wrong; if it is right, the test is not testing anything
+trial:
+  min_covered: 2                    # of the three effects, intervals that cover the truth
+  decision_correct: true
+competitor:
+  pooled_covers: true
+forecast:
+  max_mape_country: 0.06
+  min_coverage_country: 0.5
+rollout:
+  min_share_of_oracle: 0.8
+  must_beat: [highest_traffic]

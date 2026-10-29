@@ -1,0 +1,136 @@
+{
+  "generated_by": "cndl run",
+  "seconds": 377,
+  "rows": {
+    "sites": 1200,
+    "daily": 1325381,
+    "prices": 1607,
+    "competitor_events": 196,
+    "trial_hourly": 215040,
+    "trial_assignment": 4480,
+    "candidates": 1400,
+    "warehouse.site_day": 1325381,
+    "warehouse.sites": 1200,
+    "warehouse.site_week": 189123,
+    "warehouse.trial_day": 8960,
+    "warehouse.candidates": 1400
+  },
+  "evaluation": {
+    "price_change": {
+      "truth_log": -0.08211244273965215,
+      "methods": [
+        {
+          "method": "before_after",
+          "estimate": 0.04124374374036255,
+          "error": 0.1233561864800147,
+          "covers": false
+        },
+        {
+          "method": "twfe",
+          "estimate": 0.014979868982277598,
+          "error": 0.09709231172192975,
+          "covers": false
+        },
+        {
+          "method": "imputation_parallel_trends",
+          "estimate": 0.01784701308541914,
+          "error": 0.09995945582507129,
+          "covers": false
+        },
+        {
+          "method": "synthetic_did",
+          "estimate": -0.023103691168580433,
+          "error": 0.059008751571071716,
+          "covers": false
+        },
+        {
+          "method": "trend_imputation",
+          "estimate": -0.09046297587577473,
+          "error": -0.008350533136122579,
+          "covers": true
+        }
+      ],
+      "range_covers_truth": true,
+      "range_width": 0.09367445050753376,
+      "truth_by_segment": {
+        "kerbside": -0.06525769166042815,
+        "motorway": -0.0305380620998917,
+        "retail": -0.1177458816885045,
+        "urban_hub": -0.08658615715482469
+      },
+      "decision_correct": true
+    },
+    "trial": {
+      "revenue_eur": {
+        "truth": -118.22162748530056,
+        "estimate": -142.86289109688082,
+        "covers": true
+      },
+      "offpeak_share": {
+        "truth": 0.04810033864044716,
+        "estimate": 0.04178501987083015,
+        "covers": false
+      },
+      "log_peak_sessions": {
+        "truth": -0.061875403718087515,
+        "estimate": -0.06343413731670348,
+        "covers": true
+      },
+      "true_net_value_per_site_day": -136.14258620700497,
+      "decision_correct": true
+    },
+    "competitor": {
+      "available": true,
+      "synthetic_control": {
+        "truth": -0.2229123185490002,
+        "estimate": -0.18026326103583581,
+        "covers": true
+      },
+      "pooled": {
+        "truth": -0.15229065742383163,
+        "estimate": -0.1560195975957218,
+        "covers": true
+      }
+    },
+    "forecast": {
+      "months": 11,
+      "mape_country": 0.036188016375679935,
+      "mape_total": 0.021723592781409826,
+      "bias_total": -0.0201104400295552,
+      "coverage_country": 0.6033057851239669,
+      "coverage_total": 0.0,
+      "nominal": 0.8
+    },
+    "rollout": {
+      "oracle_npv_eur": 478033628.1378739,
+      "plans": {
+        "highest_traffic": {
+          "true_npv_eur": 276056525.7101954,
+          "expected_npv_eur": 343429996.06598073,
+          "regret_eur": 201977102.42767847,
+          "share_of_oracle": 0.5774834853889725
+        },
+        "expected_npv_greedy": {
+          "true_npv_eur": 389257348.93631816,
+          "expected_npv_eur": 491020509.27788925,
+          "regret_eur": 88776279.20155573,
+          "share_of_oracle": 0.8142886316442345
+        },
+        "optimised": {
+          "true_npv_eur": 395519365.3691572,
+          "expected_npv_eur": 516260812.8549187,
+          "regret_eur": 82514262.7687167,
+          "share_of_oracle": 0.827388162857618
+        },
+        "optimised_risk": {
+          "true_npv_eur": 392893701.4013125,
+          "expected_npv_eur": 514691601.091813,
+          "regret_eur": 85139926.73656142,
+          "share_of_oracle": 0.8218955284208469
+        }
+      },
+      "rank_correlation_npv": 0.6985292558093872,
+      "coverage_p10_p90": 0.8442857142857143
+    }
+  }
+}

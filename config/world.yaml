@@ -1,0 +1,105 @@
+# The simulated network: the true structural model behind every number the analyses see.
+# Only src/cndl/sim and src/cndl/evaluation read this file (tests/test_isolation.py checks it).
+# Held-out worlds override any of these keys.
+seed: 2026
+start: "2023-01-02"        # a Monday
+end: "2026-09-27"          # history ends on a Sunday
+future_weeks: 53           # truth for the forecast horizon (Oct 2026 to Sep 2027), never shown to the analyses
+
+countries:
+  #     BEV stock growth per year, price index, share of sites
+  DE: { growth: 0.26, price: 1.00, share: 0.24 }
+  NL: { growth: 0.18, price: 0.95, share: 0.08 }
+  IT: { growth: 0.34, price: 1.08, share: 0.10 }
+  GB: { growth: 0.22, price: 1.10, share: 0.12 }
+  SE: { growth: 0.16, price: 0.92, share: 0.07 }
+  DK: { growth: 0.20, price: 0.90, share: 0.06 }
+  AT: { growth: 0.21, price: 0.98, share: 0.06 }
+  PL: { growth: 0.40, price: 0.85, share: 0.09 }
+  CZ: { growth: 0.36, price: 0.83, share: 0.07 }
+  HU: { growth: 0.33, price: 0.80, share: 0.05 }
+  RO: { growth: 0.42, price: 0.78, share: 0.06 }
+
+network:
+  sites: 1200
+  # segment: share, charger type mix, points range, sessions per point per day at the reference level
+  segments:
+    motorway:  { share: 0.22, types: { HPC: 0.85, DC: 0.15 }, elasticity: -0.30 }
+    urban_hub: { share: 0.20, types: { HPC: 0.55, DC: 0.45 }, elasticity: -0.70 }
+    retail:    { share: 0.33, types: { DC: 0.55, AC: 0.45 }, elasticity: -0.90 }
+    kerbside:  { share: 0.25, types: { AC: 1.00 }, elasticity: -0.50 }
+  elasticity_site_sd: 0.10
+  types:
+    AC:  { points: [2, 4],  per_point: 2.0, kwh: 14.0, base_price: 0.49, cap_per_point: 8 }
+    DC:  { points: [2, 4],  per_point: 3.5, kwh: 27.0, base_price: 0.59, cap_per_point: 26 }
+    HPC: { points: [4, 12], per_point: 4.5, kwh: 34.0, base_price: 0.69, cap_per_point: 32 }
+  quality_sd: 0.35          # site quality the analyses cannot see
+  local_trend_sd: 0.10      # site-specific growth per year beyond the country's, also unseen
+  traffic_beta: 0.35
+  bev_beta: 1.0             # BEV stock growth passes through to demand one to one
+  ramp_depth: 0.65          # a new site starts at 35% of its mature level
+  ramp_days: 150
+  dispersion: 25            # negative binomial size for daily sessions
+  country_shock_sd: 0.05
+  country_shock_ar: 0.7
+  price_halflife_days: 21   # drivers react to a price change over a few weeks
+  seasonality:
+    motorway:  { annual: 0.20, peak_day: 205, weekly: [0.92, 0.90, 0.92, 0.97, 1.12, 1.08, 1.09] }
+    urban_hub: { annual: 0.06, peak_day: 30,  weekly: [1.04, 1.04, 1.04, 1.04, 1.03, 0.93, 0.88] }
+    retail:    { annual: 0.08, peak_day: 340, weekly: [0.95, 0.97, 0.98, 1.00, 1.06, 1.14, 0.90] }
+    kerbside:  { annual: 0.05, peak_day: 20,  weekly: [1.02, 1.02, 1.02, 1.02, 1.00, 0.96, 0.96] }
+
+outages:
+  daily_rate: 0.012         # chance an outage starts at a site on a given day
+  mean_days: 2.5
+  demand_loss: 0.85         # share of a down point's demand that is lost, not moved
+
+competitors:
+  share_of_sites: 0.15      # sites that get a competitor opening nearby during the history
+  window: ["2023-06-01", "2026-06-30"]
+  effect_mean: -0.16
+  effect_sd: 0.05
+  urban_extra: -0.06
+  phase_in_days: 56
+
+# The 2025 price increase, rolled out in waves to sites chosen by country managers.
+price_change:
+  delta_eur: 0.10
+  waves: ["2025-03-03", "2025-06-02", "2025-09-01"]
+  # managers raised prices where demand was growing: selection on the unseen local trend
+  select_intercept: -0.35
+  select_on_trend: 1.6
+  select_on_utilisation: 0.5
+
+# The 2026 off-peak discount trial: a switchback by site and day on HPC sites.
+offpeak_trial:
+  start: "2026-08-03"
+  weeks: 8
+  sites: 80
+  discount: 0.30
+  hours: [22, 23, 0, 1, 2, 3, 4, 5, 6]
+  offpeak_gain: 0.38        # extra off-peak sessions on a discount day (new and shifted)
+  peak_shift: 0.06          # share of peak sessions that move to the night
+  carryover: 0.25           # the day after a discount day keeps this share of the off-peak gain
+  hourly_shape:             # share of daily sessions by hour, before any discount
+    motorway:  [0.012, 0.008, 0.006, 0.005, 0.006, 0.012, 0.025, 0.040, 0.050, 0.058, 0.064, 0.068, 0.070, 0.070, 0.068, 0.066, 0.064, 0.062, 0.058, 0.050, 0.040, 0.032, 0.024, 0.018]
+    urban_hub: [0.015, 0.010, 0.007, 0.006, 0.007, 0.012, 0.030, 0.052, 0.060, 0.058, 0.055, 0.056, 0.058, 0.058, 0.057, 0.060, 0.064, 0.066, 0.062, 0.054, 0.045, 0.034, 0.022, 0.018]
+
+# Candidates for next year's high-power rollout and the economics to judge them by.
+rollout:
+  candidates: 1400
+  target_points: 1000
+  points_options: [4, 8, 12]
+  capex_per_point: 140000
+  site_fixed: 250000
+  grid_kw_per_point: 210          # diversified demand per 300 kW point
+  battery_per_point: 60000        # when the grid connection is too small
+  opex_per_point_year: 9000
+  partner_share: 0.10
+  energy_cost_eur_kwh: 0.30
+  fees_share: 0.08                # roaming and payment fees on revenue
+  discount_rate: 0.08
+  years: 10
+  cannibalisation_km: 4.0
+  cannibalisation: 0.12           # demand lost per nearby site, decaying with distance
+  budget_eur: 190000000

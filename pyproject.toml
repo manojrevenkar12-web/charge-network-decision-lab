@@ -1,0 +1,60 @@
+[project]
+name = "cndl"
+version = "1.0.0"
+description = "Decisions for a pan-European charge-point network: causal effects, experiments, forecasts and the yearly rollout, checked against known truth"
+requires-python = ">=3.13"
+dependencies = [
+  "numpy>=2.3",
+  "polars>=1.30",
+  "duckdb>=1.4",
+  "pyarrow>=21",
+  "pandas>=2.3",
+  "scipy>=1.16",
+  "statsmodels>=0.14",
+  "pyfixest>=0.30",
+  "numpyro>=0.19",
+  "jax>=0.7",
+  "statsforecast>=2.0",
+  "mlforecast>=1.0",
+  "lightgbm>=4.6",
+  "highspy>=1.11",
+  "pyyaml>=6",
+  "pydantic>=2.11",
+  "typer>=0.16",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4",
+    "hypothesis>=6.140",
+    "ruff>=0.14",
+]
+
+[project.scripts]
+cndl = "cndl.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cndl"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+[tool.ruff.lint.per-file-ignores]
+# the briefs are prose; typer declares options in defaults
+"src/cndl/briefs.py" = ["E501"]
+"src/cndl/cli.py" = ["B008"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: builds the world and runs the full pipeline"]
+# pandas 2.3 inside, with numpy 2.5: not from this code
+filterwarnings = ["ignore:The 'generic' unit for NumPy timedelta:DeprecationWarning"]

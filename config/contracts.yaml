@@ -1,0 +1,26 @@
+# What each table promises. The pipeline stops if a promise is broken.
+site_day:
+  not_null: [site_id, date, sessions, kwh, revenue_eur, price_eur_kwh, availability]
+  checks:
+    - "sessions >= 0"
+    - "kwh >= 0"
+    - "price_eur_kwh between 0.2 and 1.5"
+    - "availability between 0 and 1"
+  unique: [site_id, date]
+sites:
+  not_null: [site_id, country, segment, charger_type, points, opened]
+  checks:
+    - "points between 1 and 24"
+    - "country in ('DE','NL','IT','GB','SE','DK','AT','PL','CZ','HU','RO')"
+  unique: [site_id]
+site_week:
+  checks:
+    - "days = 7"
+  unique: [site_id, week]
+trial_day:
+  checks:
+    - "offpeak_share between 0 and 1"
+  unique: [site_id, date]
+candidates:
+  not_null: [candidate_id, country, segment, lat, lon, grid_kw]
+  unique: [candidate_id]

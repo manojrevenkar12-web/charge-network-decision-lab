@@ -1,0 +1,50 @@
+# Business settings and method choices for the analyses. Nothing here is a true parameter of the
+# simulated world: these are what an analyst at EDRI would know or decide.
+price_change:
+  delta_eur: 0.10
+  pre_weeks: 26               # event-study leads shown
+  post_weeks: 52
+  pretrend_alpha: 0.05        # a joint pre-trend test below this sends the analysis to trend-adjusted methods
+  bootstrap: 300
+offpeak_trial:
+  hours: [22, 23, 0, 1, 2, 3, 4, 5, 6]
+  discount: 0.30
+  weeks: 8
+  # what an hour of relieved peak demand is worth: fewer queues and a lower grid peak charge
+  peak_session_value_eur: 4.0
+  alpha: 0.05
+  power_simulations: 200
+synthetic_control:
+  pre_weeks: 52
+  placebos: 60
+forecast:
+  horizon_months: 12
+  backtest_months: 12
+  interval: 0.8
+site_model:
+  mature_after_days: 540
+  chains: 2
+  warmup: 600
+  samples: 600
+rollout:
+  target_points: 1000
+  tolerance_points: 50
+  points_options: [4, 8, 12]
+  capex_per_point: 140000
+  site_fixed: 250000
+  grid_kw_per_point: 210
+  battery_per_point: 60000
+  opex_per_point_year: 9000
+  partner_share: 0.10
+  energy_cost_eur_kwh: 0.30
+  fees_share: 0.08
+  discount_rate: 0.08
+  years: 10
+  kwh_per_session: 34
+  budget_eur: 190000000
+  cannibalisation_km: 4.0
+  scenarios: 200              # posterior samples the optimiser plans against
+  cvar_alpha: 0.10            # the worst 10% of scenarios
+  min_cvar_eur: 0             # the portfolio must not lose money even in its worst 10% of scenarios
+  country_min_sites: { IT: 18 }   # the Italian motorway tender commitment
+  country_max_share: 0.35         # build and permitting capacity: at most this share of points in one country
