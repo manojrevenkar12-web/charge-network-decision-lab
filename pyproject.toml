@@ -2,7 +2,7 @@
 name = "cndl"
 version = "1.0.0"
 description = "Decisions for a pan-European charge-point network: causal effects, experiments, forecasts and the yearly rollout, checked against known truth"
-requires-python = ">=3.13"
+requires-python = ">=3.13,<3.14"
 dependencies = [
   "numpy>=2.3",
   "polars>=1.30",
