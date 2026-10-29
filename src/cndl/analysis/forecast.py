@@ -36,6 +36,7 @@ def load() -> tuple[pd.DataFrame, pd.DataFrame]:
                s.segment, s.charger_type, s.points, s.opened
         from site_month m join sites s using (site_id)
         where m.days = extract(day from last_day(m.month)) -- complete months only
+        order by m.site_id, m.month -- "last" and the latest months below depend on this order
         """
     ).df()
     con.close()
@@ -215,11 +216,10 @@ def run() -> dict[str, Any]:
     fc = fc.join(q, on="horizon")
     fc["lo"] = fc.kwh * np.exp(fc[a])
     fc["hi"] = fc.kwh * np.exp(fc[1 - a])
-    total = fc.groupby("month")[["kwh"]].sum()
-    # the total's interval from the sum of the country errors at each horizon (they move together)
-    tot_rel = rel.groupby(["horizon", "month"])[0].mean().groupby(level=0).quantile([a, 1 - a]).unstack()
-    total["lo"] = total.kwh.to_numpy() * np.exp(tot_rel[a].reindex(range(len(total))).to_numpy())
-    total["hi"] = total.kwh.to_numpy() * np.exp(tot_rel[1 - a].reindex(range(len(total))).to_numpy())
+    # The total's interval is the sum of the country intervals: countries share the same market
+    # and weather, so their errors move together. (One backtest origin gives only one total error
+    # per horizon, too few for quantiles of their own.)
+    total = fc.groupby("month")[["kwh", "lo", "hi"]].sum()
     history = country.groupby("month").kwh.sum()
     return {
         "question": "How much energy will the existing network sell in the next twelve months?",

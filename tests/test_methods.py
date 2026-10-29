@@ -60,3 +60,17 @@ def test_simplex_weights_are_a_distribution():
     assert w.min() >= -1e-12
     assert w.sum() == pytest.approx(1.0)
     assert w.argmax() == 3
+
+
+def test_forecast_total_interval_has_width():
+    """The network total's interval must not collapse to the point forecast (it once did: one
+    backtest origin gave a single total error per horizon). Runs on the last build if present."""
+    import json
+
+    from cndl.settings import BUILD
+
+    path = BUILD / "results" / "forecast.json"
+    if not path.exists():
+        pytest.skip("no build; run cndl run")
+    total = json.loads(path.read_text())["total"]
+    assert all(m["hi"] - m["lo"] > 0.01 * m["kwh"] for m in total)

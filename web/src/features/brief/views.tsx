@@ -153,6 +153,7 @@ export const forecastView = (r: Forecast, ev?: Evaluation): View => {
       title: "Energy in the next twelve months",
       rows: [{ label: "Existing network", estimate: r.next_12_months_gwh, lo, hi, kind: "credible", truth }],
       format: (v) => gwh(v),
+      legend: { credible: `forecast; line from the sum of the monthly ${Math.round(r.interval * 100)}% bounds`, usual: "" },
     },
     chartTitle: "Monthly energy, history and forecast",
     chartLead: `Grey: what the network sold. Blue: the forecast with its ${Math.round(r.interval * 100)}% interval, from the backtest's own errors.`,

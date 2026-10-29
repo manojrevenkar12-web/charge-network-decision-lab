@@ -1,0 +1,2148 @@
+{
+  "set": "worlds-2026-10",
+  "started": "2026-10-29T17:38:03Z",
+  "worlds": {
+    "busy-sites-utilisation-targeted": {
+      "seconds": 189,
+      "exit": 1,
+      "evaluation": {
+        "price_change": {
+          "truth_log": -0.06777114685461429,
+          "methods": [
+            {
+              "method": "before_after",
+              "estimate": 0.015131077799793119,
+              "error": 0.0829022246544074,
+              "covers": false
+            },
+            {
+              "method": "twfe",
+              "estimate": -0.13591960814786785,
+              "error": -0.06814846129325357,
+              "covers": false
+            },
+            {
+              "method": "imputation_parallel_trends",
+              "estimate": -0.14062268080336465,
+              "error": -0.07285153394875037,
+              "covers": false
+            },
+            {
+              "method": "synthetic_did",
+              "estimate": -0.11613216019153029,
+              "error": -0.048361013336916,
+              "covers": false
+            },
+            {
+              "method": "trend_imputation",
+              "estimate": NaN,
+              "error": NaN,
+              "covers": false
+            }
+          ],
+          "range_covers_truth": false,
+          "range_width": 0.023560371433220373,
+          "truth_by_segment": {
+            "kerbside": -0.05556102407345011,
+            "motorway": -0.02886346707357084,
+            "retail": -0.10411892663038107,
+            "urban_hub": -0.07303088935465363
+          },
+          "decision_correct": true
+        },
+        "trial": {
+          "revenue_eur": {
+            "truth": -117.30177876728116,
+            "estimate": -120.73808790804874,
+            "covers": true
+          },
+          "offpeak_share": {
+            "truth": 0.04810033864044716,
+            "estimate": 0.04494131304180332,
+            "covers": false
+          },
+          "log_peak_sessions": {
+            "truth": -0.061875403718087515,
+            "estimate": -0.06424264202530686,
+            "covers": true
+          },
+          "true_net_value_per_site_day": -136.1624054458846,
+          "decision_correct": true
+        },
+        "competitor": {
+          "available": true,
+          "synthetic_control": {
+            "truth": -0.1687640398883756,
+            "estimate": -0.21482684254392154,
+            "covers": true
+          },
+          "pooled": {
+            "truth": -0.1201873224897383,
+            "estimate": NaN,
+            "covers": false
+          }
+        },
+        "forecast": {
+          "months": 11,
+          "mape_country": 0.048778323738249155,
+          "mape_total": 0.05024495784933432,
+          "bias_total": -0.05247495675634306,
+          "coverage_country": 0.5206611570247934,
+          "coverage_total": 0.0,
+          "nominal": 0.8,
+          "true_total_gwh": 523.156433,
+          "forecast_total_gwh": 552.1293993550626
+        },
+        "rollout": {
+          "oracle_npv_eur": 415165863.34594077,
+          "plans": {
+            "highest_traffic": {
+              "true_npv_eur": 223839719.34649825,
+              "expected_npv_eur": 339685136.3722287,
+              "regret_eur": 191326143.99944252,
+              "share_of_oracle": 0.5391573323069236
+            },
+            "expected_npv_greedy": {
+              "true_npv_eur": 364659731.0338477,
+              "expected_npv_eur": 486330072.27990794,
+              "regret_eur": 50506132.31209308,
+              "share_of_oracle": 0.8783470974587129
+            },
+            "optimised": {
+              "true_npv_eur": 353083813.57649153,
+              "expected_npv_eur": 490392875.71310866,
+              "regret_eur": 62082049.769449234,
+              "share_of_oracle": 0.8504644643249033
+            },
+            "optimised_risk": {
+              "true_npv_eur": 353083813.57649153,
+              "expected_npv_eur": 490392875.71310866,
+              "regret_eur": 62082049.769449234,
+              "share_of_oracle": 0.8504644643249033
+            }
+          },
+          "rank_correlation_npv": 0.7553356317310075,
+          "coverage_p10_p90": 0.8521428571428571
+        }
+      },
+      "gate": {
+        "passed": false,
+        "checks": [
+          {
+            "check": "price change: range covers the truth",
+            "passed": false,
+            "detail": "truth -0.068"
+          },
+          {
+            "check": "price change: two-way fixed effects misses (the trap is armed)",
+            "passed": true,
+            "detail": "twfe error -0.068"
+          },
+          {
+            "check": "trial: intervals cover the truth",
+            "passed": true,
+            "detail": "2 of 3"
+          },
+          {
+            "check": "trial: decision matches the truth",
+            "passed": true,
+            "detail": "true net -136 EUR"
+          },
+          {
+            "check": "competitor: network-wide interval covers the truth",
+            "passed": false,
+            "detail": "truth -0.120"
+          },
+          {
+            "check": "forecast: country MAPE",
+            "passed": true,
+            "detail": "4.9%"
+          },
+          {
+            "check": "forecast: interval coverage",
+            "passed": true,
+            "detail": "52%"
+          },
+          {
+            "check": "rollout: share of the oracle's NPV",
+            "passed": true,
+            "detail": "85%"
+          },
+          {
+            "check": "rollout: beats highest_traffic",
+            "passed": true,
+            "detail": ""
+          }
+        ]
+      }
+    },
+    "competition-wave": {
+      "seconds": 210,
+      "exit": 0,
+      "evaluation": {
+        "price_change": {
+          "truth_log": -0.08050780124181349,
+          "methods": [
+            {
+              "method": "before_after",
+              "estimate": 0.029738038035730663,
+              "error": 0.11024583927754415,
+              "covers": false
+            },
+            {
+              "method": "twfe",
+              "estimate": 0.015969411835638034,
+              "error": 0.09647721307745152,
+              "covers": false
+            },
+            {
+              "method": "imputation_parallel_trends",
+              "estimate": 0.017988853406335374,
+              "error": 0.09849665464814886,
+              "covers": false
+            },
+            {
+              "method": "synthetic_did",
+              "estimate": -0.01085893765609277,
+              "error": 0.06964886358572073,
+              "covers": false
+            },
+            {
+              "method": "trend_imputation",
+              "estimate": -0.08212777074838498,
+              "error": -0.001619969506571492,
+              "covers": true
+            }
+          ],
+          "range_covers_truth": true,
+          "range_width": 0.10031211956226416,
+          "truth_by_segment": {
+            "kerbside": -0.06563663391768973,
+            "motorway": -0.03167513439601938,
+            "retail": -0.11775171244257418,
+            "urban_hub": -0.08838552474774061
+          },
+          "decision_correct": true
+        },
+        "trial": {
+          "revenue_eur": {
+            "truth": -117.43714064955867,
+            "estimate": -138.96481856783336,
+            "covers": true
+          },
+          "offpeak_share": {
+            "truth": 0.04785580058404207,
+            "estimate": 0.0446968911258503,
+            "covers": false
+          },
+          "log_peak_sessions": {
+            "truth": -0.061875403718087515,
+            "estimate": -0.07381424486817077,
+            "covers": true
+          },
+          "true_net_value_per_site_day": -136.0421406495587,
+          "decision_correct": true
+        },
+        "competitor": {
+          "available": true,
+          "synthetic_control": {
+            "truth": -0.16719524541254066,
+            "estimate": -0.09898665120824258,
+            "covers": true
+          },
+          "pooled": {
+            "truth": -0.20142377776390288,
+            "estimate": -0.21313540281596263,
+            "covers": true
+          }
+        },
+        "forecast": {
+          "months": 11,
+          "mape_country": 0.038494386078694244,
+          "mape_total": 0.023528576828684408,
+          "bias_total": -0.02404407186965718,
+          "coverage_country": 0.8016528925619835,
+          "coverage_total": 0.0,
+          "nominal": 0.8,
+          "true_total_gwh": 445.933036,
+          "forecast_total_gwh": 456.91923492312026
+        },
+        "rollout": {
+          "oracle_npv_eur": 482736200.45600706,
+          "plans": {
+            "highest_traffic": {
+              "true_npv_eur": 265250766.13617295,
+              "expected_npv_eur": 352818468.28804183,
+              "regret_eur": 217485434.3198341,
+              "share_of_oracle": 0.549473534169613
+            },
+            "expected_npv_greedy": {
+              "true_npv_eur": 379063037.48830324,
+              "expected_npv_eur": 461055324.55432886,
+              "regret_eur": 103673162.96770382,
+              "share_of_oracle": 0.7852384742023262
+            },
+            "optimised": {
+              "true_npv_eur": 397059726.36863846,
+              "expected_npv_eur": 494401442.61779594,
+              "regret_eur": 85676474.08736861,
+              "share_of_oracle": 0.8225190611219212
+            },
+            "optimised_risk": {
+              "true_npv_eur": 393925159.7080157,
+              "expected_npv_eur": 491792960.9559772,
+              "regret_eur": 88811040.74799138,
+              "share_of_oracle": 0.8160257286192794
+            }
+          },
+          "rank_correlation_npv": 0.6698323432089216,
+          "coverage_p10_p90": 0.8035714285714286
+        }
+      },
+      "gate": {
+        "passed": true,
+        "checks": [
+          {
+            "check": "price change: range covers the truth",
+            "passed": true,
+            "detail": "truth -0.081"
+          },
+          {
+            "check": "price change: two-way fixed effects misses (the trap is armed)",
+            "passed": true,
+            "detail": "twfe error +0.096"
+          },
+          {
+            "check": "trial: intervals cover the truth",
+            "passed": true,
+            "detail": "2 of 3"
+          },
+          {
+            "check": "trial: decision matches the truth",
+            "passed": true,
+            "detail": "true net -136 EUR"
+          },
+          {
+            "check": "competitor: network-wide interval covers the truth",
+            "passed": true,
+            "detail": "truth -0.201"
+          },
+          {
+            "check": "forecast: country MAPE",
+            "passed": true,
+            "detail": "3.8%"
+          },
+          {
+            "check": "forecast: interval coverage",
+            "passed": true,
+            "detail": "80%"
+          },
+          {
+            "check": "rollout: share of the oracle's NPV",
+            "passed": true,
+            "detail": "82%"
+          },
+          {
+            "check": "rollout: beats highest_traffic",
+            "passed": true,
+            "detail": ""
+          }
+        ]
+      }
+    },
+    "deep-discount-short-window": {
+      "seconds": 188,
+      "exit": 1,
+      "evaluation": {
+        "price_change": {
+          "truth_log": -0.07845034537124555,
+          "methods": [
+            {
+              "method": "before_after",
+              "estimate": 0.04194151690935385,
+              "error": 0.1203918622805994,
+              "covers": false
+            },
+            {
+              "method": "twfe",
+              "estimate": 0.014041111105977425,
+              "error": 0.09249145647722298,
+              "covers": false
+            },
+            {
+              "method": "imputation_parallel_trends",
+              "estimate": 0.01675719657160296,
+              "error": 0.09520754194284851,
+              "covers": false
+            },
+            {
+              "method": "synthetic_did",
+              "estimate": -0.016353639810616747,
+              "error": 0.06209670556062881,
+              "covers": false
+            },
+            {
+              "method": "trend_imputation",
+              "estimate": NaN,
+              "error": NaN,
+              "covers": false
+            }
+          ],
+          "range_covers_truth": false,
+          "range_width": 0.026323011673920448,
+          "truth_by_segment": {
+            "kerbside": -0.06371522237566683,
+            "motorway": -0.03388169068048703,
+            "retail": -0.11618874475558963,
+            "urban_hub": -0.08172820527410822
+          },
+          "decision_correct": true
+        },
+        "trial": {
+          "revenue_eur": {
+            "truth": -161.07426746778333,
+            "estimate": -158.94711602424582,
+            "covers": true
+          },
+          "offpeak_share": {
+            "truth": 0.039965476916288996,
+            "estimate": 0.0358805187760347,
+            "covers": false
+          },
+          "log_peak_sessions": {
+            "truth": -0.09431067947124129,
+            "estimate": -0.09131227619574633,
+            "covers": true
+          },
+          "true_net_value_per_site_day": -186.21493809798545,
+          "decision_correct": true
+        },
+        "competitor": {
+          "available": true,
+          "synthetic_control": {
+            "truth": -0.19964568952140851,
+            "estimate": -0.14419148980787125,
+            "covers": true
+          },
+          "pooled": {
+            "truth": -0.1490149832159175,
+            "estimate": NaN,
+            "covers": false
+          }
+        },
+        "forecast": {
+          "months": 11,
+          "mape_country": 0.04164202107012822,
+          "mape_total": 0.03448980703409386,
+          "bias_total": -0.035706620340917095,
+          "coverage_country": 0.8347107438016529,
+          "coverage_total": 0.0,
+          "nominal": 0.8,
+          "true_total_gwh": 427.187399,
+          "forecast_total_gwh": 443.0056329444346
+        },
+        "rollout": {
+          "oracle_npv_eur": 462215372.24502885,
+          "plans": {
+            "highest_traffic": {
+              "true_npv_eur": 254169365.41381124,
+              "expected_npv_eur": 345285084.8253188,
+              "regret_eur": 208046006.83121762,
+              "share_of_oracle": 0.5498937955682517
+            },
+            "expected_npv_greedy": {
+              "true_npv_eur": 380386139.49723727,
+              "expected_npv_eur": 488149252.4538098,
+              "regret_eur": 81829232.74779159,
+              "share_of_oracle": 0.822962978599482
+            },
+            "optimised": {
+              "true_npv_eur": 377475129.0728788,
+              "expected_npv_eur": 513970963.53625625,
+              "regret_eur": 84740243.17215008,
+              "share_of_oracle": 0.8166650261747943
+            },
+            "optimised_risk": {
+              "true_npv_eur": 375566170.23715746,
+              "expected_npv_eur": 511875258.18525344,
+              "regret_eur": 86649202.00787139,
+              "share_of_oracle": 0.8125350059497003
+            }
+          },
+          "rank_correlation_npv": 0.7158658098440722,
+          "coverage_p10_p90": 0.77
+        }
+      },
+      "gate": {
+        "passed": false,
+        "checks": [
+          {
+            "check": "price change: range covers the truth",
+            "passed": false,
+            "detail": "truth -0.078"
+          },
+          {
+            "check": "price change: two-way fixed effects misses (the trap is armed)",
+            "passed": true,
+            "detail": "twfe error +0.092"
+          },
+          {
+            "check": "trial: intervals cover the truth",
+            "passed": true,
+            "detail": "2 of 3"
+          },
+          {
+            "check": "trial: decision matches the truth",
+            "passed": true,
+            "detail": "true net -186 EUR"
+          },
+          {
+            "check": "competitor: network-wide interval covers the truth",
+            "passed": false,
+            "detail": "truth -0.149"
+          },
+          {
+            "check": "forecast: country MAPE",
+            "passed": true,
+            "detail": "4.2%"
+          },
+          {
+            "check": "forecast: interval coverage",
+            "passed": true,
+            "detail": "83%"
+          },
+          {
+            "check": "rollout: share of the oracle's NPV",
+            "passed": true,
+            "detail": "81%"
+          },
+          {
+            "check": "rollout: beats highest_traffic",
+            "passed": true,
+            "detail": ""
+          }
+        ]
+      }
+    },
+    "dense-cannibalisation-rollout": {
+      "seconds": 193,
+      "exit": 1,
+      "evaluation": {
+        "price_change": {
+          "truth_log": -0.08031925949657508,
+          "methods": [
+            {
+              "method": "before_after",
+              "estimate": 0.052450758164650314,
+              "error": 0.1327700176612254,
+              "covers": false
+            },
+            {
+              "method": "twfe",
+              "estimate": 0.024652695511771044,
+              "error": 0.10497195500834612,
+              "covers": false
+            },
+            {
+              "method": "imputation_parallel_trends",
+              "estimate": 0.029664632862840722,
+              "error": 0.1099838923594158,
+              "covers": false
+            },
+            {
+              "method": "synthetic_did",
+              "estimate": -0.008856558171569832,
+              "error": 0.07146270132500525,
+              "covers": false
+            },
+            {
+              "method": "trend_imputation",
+              "estimate": NaN,
+              "error": NaN,
+              "covers": false
+            }
+          ],
+          "range_covers_truth": false,
+          "range_width": 0.021585214740684342,
+          "truth_by_segment": {
+            "kerbside": -0.06859488120734278,
+            "motorway": -0.03206974879904737,
+            "retail": -0.11933941707742964,
+            "urban_hub": -0.08599212072485955
+          },
+          "decision_correct": true
+        },
+        "trial": {
+          "revenue_eur": {
+            "truth": -108.30178986865614,
+            "estimate": -112.49981277764536,
+            "covers": true
+          },
+          "offpeak_share": {
+            "truth": 0.04766017013891799,
+            "estimate": 0.04553244049348983,
+            "covers": true
+          },
+          "log_peak_sessions": {
+            "truth": -0.061875403718087515,
+            "estimate": -0.06496164958351926,
+            "covers": true
+          },
+          "true_net_value_per_site_day": -124.81398281193441,
+          "decision_correct": true
+        },
+        "competitor": {
+          "available": true,
+          "synthetic_control": {
+            "truth": -0.10131976091452068,
+            "estimate": -0.12415363732899896,
+            "covers": true
+          },
+          "pooled": {
+            "truth": -0.1455670345099701,
+            "estimate": NaN,
+            "covers": false
+          }
+        },
+        "forecast": {
+          "months": 11,
+          "mape_country": 0.03849386862634455,
+          "mape_total": 0.030353777755583455,
+          "bias_total": -0.03099217285351008,
+          "coverage_country": 0.7851239669421488,
+          "coverage_total": 0.0,
+          "nominal": 0.8,
+          "true_total_gwh": 443.933398,
+          "forecast_total_gwh": 458.1319010675941
+        },
+        "rollout": {
+          "oracle_npv_eur": 468580424.69634426,
+          "plans": {
+            "highest_traffic": {
+              "true_npv_eur": 217924813.02796528,
+              "expected_npv_eur": 310744298.2393038,
+              "regret_eur": 250655611.66837898,
+              "share_of_oracle": 0.46507451345025314
+            },
+            "expected_npv_greedy": {
+              "true_npv_eur": 347383374.6612941,
+              "expected_npv_eur": 412150820.3106896,
+              "regret_eur": 121197050.03505015,
+              "share_of_oracle": 0.7413527248527509
+            },
+            "optimised": {
+              "true_npv_eur": 371596160.53251433,
+              "expected_npv_eur": 448292874.35344076,
+              "regret_eur": 96984264.16382992,
+              "share_of_oracle": 0.7930253611710755
+            },
+            "optimised_risk": {
+              "true_npv_eur": 363692491.5204383,
+              "expected_npv_eur": 441434185.339252,
+              "regret_eur": 104887933.17590594,
+              "share_of_oracle": 0.7761580987001819
+            }
+          },
+          "rank_correlation_npv": 0.7491325189904077,
+          "coverage_p10_p90": 0.847741935483871
+        }
+      },
+      "gate": {
+        "passed": false,
+        "checks": [
+          {
+            "check": "price change: range covers the truth",
+            "passed": false,
+            "detail": "truth -0.080"
+          },
+          {
+            "check": "price change: two-way fixed effects misses (the trap is armed)",
+            "passed": true,
+            "detail": "twfe error +0.105"
+          },
+          {
+            "check": "trial: intervals cover the truth",
+            "passed": true,
+            "detail": "3 of 3"
+          },
+          {
+            "check": "trial: decision matches the truth",
+            "passed": true,
+            "detail": "true net -125 EUR"
+          },
+          {
+            "check": "competitor: network-wide interval covers the truth",
+            "passed": false,
+            "detail": "truth -0.146"
+          },
+          {
+            "check": "forecast: country MAPE",
+            "passed": true,
+            "detail": "3.8%"
+          },
+          {
+            "check": "forecast: interval coverage",
+            "passed": true,
+            "detail": "79%"
+          },
+          {
+            "check": "rollout: share of the oracle's NPV",
+            "passed": false,
+            "detail": "78%"
+          },
+          {
+            "check": "rollout: beats highest_traffic",
+            "passed": true,
+            "detail": ""
+          }
+        ]
+      }
+    },
+    "fast-growth-young-network": {
+      "seconds": 218,
+      "exit": 0,
+      "evaluation": {
+        "price_change": {
+          "truth_log": -0.07374832622552349,
+          "methods": [
+            {
+              "method": "before_after",
+              "estimate": 0.0771451551179946,
+              "error": 0.1508934813435181,
+              "covers": false
+            },
+            {
+              "method": "twfe",
+              "estimate": 0.04122640360822429,
+              "error": 0.11497472983374779,
+              "covers": false
+            },
+            {
+              "method": "imputation_parallel_trends",
+              "estimate": 0.048630548174003314,
+              "error": 0.1223788743995268,
+              "covers": false
+            },
+            {
+              "method": "synthetic_did",
+              "estimate": -0.013054250152443644,
+              "error": 0.06069407607307985,
+              "covers": false
+            },
+            {
+              "method": "trend_imputation",
+              "estimate": -0.08100951698122422,
+              "error": -0.007261190755700725,
+              "covers": true
+            }
+          ],
+          "range_covers_truth": true,
+          "range_width": 0.08994070732347749,
+          "truth_by_segment": {
+            "kerbside": -0.06267182213541629,
+            "motorway": -0.030877841598226985,
+            "retail": -0.11463461478873224,
+            "urban_hub": -0.07983452220024435
+          },
+          "decision_correct": true
+        },
+        "trial": {
+          "revenue_eur": {
+            "truth": -120.39241917372394,
+            "estimate": -133.38693939176295,
+            "covers": true
+          },
+          "offpeak_share": {
+            "truth": 0.04780689297276105,
+            "estimate": 0.042373284473639285,
+            "covers": false
+          },
+          "log_peak_sessions": {
+            "truth": -0.061875403718087515,
+            "estimate": -0.058770846542408495,
+            "covers": true
+          },
+          "true_net_value_per_site_day": -139.64880731388567,
+          "decision_correct": true
+        },
+        "competitor": {
+          "available": true,
+          "synthetic_control": {
+            "truth": -0.1469060488685745,
+            "estimate": -0.2876780773071409,
+            "covers": true
+          },
+          "pooled": {
+            "truth": -0.14452192413276987,
+            "estimate": -0.1396420039884462,
+            "covers": true
+          }
+        },
+        "forecast": {
+          "months": 11,
+          "mape_country": 0.0385775088777138,
+          "mape_total": 0.02905567387606608,
+          "bias_total": -0.031033712796790125,
+          "coverage_country": 0.6942148760330579,
+          "coverage_total": 0.0,
+          "nominal": 0.8,
+          "true_total_gwh": 640.911487,
+          "forecast_total_gwh": 661.438375580542
+        },
+        "rollout": {
+          "oracle_npv_eur": 515785166.8633766,
+          "plans": {
+            "highest_traffic": {
+              "true_npv_eur": 281509975.5901656,
+              "expected_npv_eur": 377888581.30971193,
+              "regret_eur": 234275191.273211,
+              "share_of_oracle": 0.5457892038697056
+            },
+            "expected_npv_greedy": {
+              "true_npv_eur": 455246783.76882166,
+              "expected_npv_eur": 531397521.38937354,
+              "regret_eur": 60538383.09455496,
+              "share_of_oracle": 0.8826286853832874
+            },
+            "optimised": {
+              "true_npv_eur": 424015823.43952906,
+              "expected_npv_eur": 552681331.6912599,
+              "regret_eur": 91769343.42384756,
+              "share_of_oracle": 0.8220783587439694
+            },
+            "optimised_risk": {
+              "true_npv_eur": 422470054.3117341,
+              "expected_npv_eur": 550869689.158738,
+              "regret_eur": 93315112.55164254,
+              "share_of_oracle": 0.8190814343903763
+            }
+          },
+          "rank_correlation_npv": 0.7412741772555381,
+          "coverage_p10_p90": 0.9075
+        }
+      },
+      "gate": {
+        "passed": true,
+        "checks": [
+          {
+            "check": "price change: range covers the truth",
+            "passed": true,
+            "detail": "truth -0.074"
+          },
+          {
+            "check": "price change: two-way fixed effects misses (the trap is armed)",
+            "passed": true,
+            "detail": "twfe error +0.115"
+          },
+          {
+            "check": "trial: intervals cover the truth",
+            "passed": true,
+            "detail": "2 of 3"
+          },
+          {
+            "check": "trial: decision matches the truth",
+            "passed": true,
+            "detail": "true net -140 EUR"
+          },
+          {
+            "check": "competitor: network-wide interval covers the truth",
+            "passed": true,
+            "detail": "truth -0.145"
+          },
+          {
+            "check": "forecast: country MAPE",
+            "passed": true,
+            "detail": "3.9%"
+          },
+          {
+            "check": "forecast: interval coverage",
+            "passed": true,
+            "detail": "69%"
+          },
+          {
+            "check": "rollout: share of the oracle's NPV",
+            "passed": true,
+            "detail": "82%"
+          },
+          {
+            "check": "rollout: beats highest_traffic",
+            "passed": true,
+            "detail": ""
+          }
+        ]
+      }
+    },
+    "mature-slow-market": {
+      "seconds": 112,
+      "exit": 1,
+      "evaluation": {
+        "price_change": {
+          "truth_log": -0.08710147014680403,
+          "methods": [
+            {
+              "method": "before_after",
+              "estimate": 0.0026606263228782265,
+              "error": 0.08976209646968225,
+              "covers": false
+            },
+            {
+              "method": "twfe",
+              "estimate": 0.016084428107660993,
+              "error": 0.10318589825446502,
+              "covers": false
+            },
+            {
+              "method": "imputation_parallel_trends",
+              "estimate": 0.02076556670961657,
+              "error": 0.1078670368564206,
+              "covers": false
+            },
+            {
+              "method": "synthetic_did",
+              "estimate": -0.013597725639132767,
+              "error": 0.07350374450767126,
+              "covers": false
+            },
+            {
+              "method": "trend_imputation",
+              "estimate": -0.09104156018107415,
+              "error": -0.003940090034270122,
+              "covers": true
+            }
+          ],
+          "range_covers_truth": true,
+          "range_width": 0.10672786441152905,
+          "truth_by_segment": {
+            "kerbside": -0.07748339465333358,
+            "motorway": -0.03681135535295347,
+            "retail": -0.1301160559521751,
+            "urban_hub": -0.09059052252270883
+          },
+          "decision_correct": true
+        },
+        "trial": {
+          "revenue_eur": {
+            "truth": -76.02734618949125,
+            "estimate": -82.4652854456272,
+            "covers": true
+          },
+          "offpeak_share": {
+            "truth": 0.04761126252763698,
+            "estimate": 0.045641780694661196,
+            "covers": true
+          },
+          "log_peak_sessions": {
+            "truth": -0.061875403718087515,
+            "estimate": -0.06440291945648961,
+            "covers": true
+          },
+          "true_net_value_per_site_day": -87.9372799643257,
+          "decision_correct": true
+        },
+        "competitor": {
+          "available": true,
+          "synthetic_control": {
+            "truth": -0.14529428298627017,
+            "estimate": -0.1763187192590213,
+            "covers": true
+          },
+          "pooled": {
+            "truth": -0.1527295361276832,
+            "estimate": -0.16236754588628932,
+            "covers": true
+          }
+        },
+        "forecast": {
+          "months": 11,
+          "mape_country": 0.04046011926123622,
+          "mape_total": 0.0286450976879976,
+          "bias_total": -0.029923820411157154,
+          "coverage_country": 0.7272727272727273,
+          "coverage_total": 0.0,
+          "nominal": 0.8,
+          "true_total_gwh": 228.988252,
+          "forecast_total_gwh": 236.05182440110465
+        },
+        "rollout": {
+          "oracle_npv_eur": 182550019.04501435,
+          "plans": {
+            "highest_traffic": {
+              "true_npv_eur": 46435549.47358546,
+              "expected_npv_eur": 129187434.41501135,
+              "regret_eur": 136114469.5714289,
+              "share_of_oracle": 0.2543716495703848
+            },
+            "expected_npv_greedy": {
+              "true_npv_eur": 74730441.30132173,
+              "expected_npv_eur": 185528437.4575772,
+              "regret_eur": 107819577.74369262,
+              "share_of_oracle": 0.4093696713496054
+            },
+            "optimised": {
+              "true_npv_eur": 96007874.85246399,
+              "expected_npv_eur": 210789842.65272453,
+              "regret_eur": 86542144.19255036,
+              "share_of_oracle": 0.5259264028276532
+            },
+            "optimised_risk": {
+              "true_npv_eur": 96007874.85246399,
+              "expected_npv_eur": 210789842.65272453,
+              "regret_eur": 86542144.19255036,
+              "share_of_oracle": 0.5259264028276532
+            }
+          },
+          "rank_correlation_npv": 0.5726198126198127,
+          "coverage_p10_p90": 0.738
+        }
+      },
+      "gate": {
+        "passed": false,
+        "checks": [
+          {
+            "check": "price change: range covers the truth",
+            "passed": true,
+            "detail": "truth -0.087"
+          },
+          {
+            "check": "price change: two-way fixed effects misses (the trap is armed)",
+            "passed": true,
+            "detail": "twfe error +0.103"
+          },
+          {
+            "check": "trial: intervals cover the truth",
+            "passed": true,
+            "detail": "3 of 3"
+          },
+          {
+            "check": "trial: decision matches the truth",
+            "passed": true,
+            "detail": "true net -88 EUR"
+          },
+          {
+            "check": "competitor: network-wide interval covers the truth",
+            "passed": true,
+            "detail": "truth -0.153"
+          },
+          {
+            "check": "forecast: country MAPE",
+            "passed": true,
+            "detail": "4.0%"
+          },
+          {
+            "check": "forecast: interval coverage",
+            "passed": true,
+            "detail": "73%"
+          },
+          {
+            "check": "rollout: share of the oracle's NPV",
+            "passed": false,
+            "detail": "53%"
+          },
+          {
+            "check": "rollout: beats highest_traffic",
+            "passed": true,
+            "detail": ""
+          }
+        ]
+      }
+    },
+    "noisy-unreliable": {
+      "seconds": 185,
+      "exit": 1,
+      "evaluation": {
+        "price_change": {
+          "truth_log": -0.07813174098719121,
+          "methods": [
+            {
+              "method": "before_after",
+              "estimate": 0.057895864809672674,
+              "error": 0.13602760579686388,
+              "covers": false
+            },
+            {
+              "method": "twfe",
+              "estimate": 0.0076939285932756925,
+              "error": 0.0858256695804669,
+              "covers": false
+            },
+            {
+              "method": "imputation_parallel_trends",
+              "estimate": 0.01000425396211697,
+              "error": 0.08813599494930818,
+              "covers": false
+            },
+            {
+              "method": "synthetic_did",
+              "estimate": 2.6934136100266302e-06,
+              "error": 0.07813443440080124,
+              "covers": false
+            },
+            {
+              "method": "trend_imputation",
+              "estimate": NaN,
+              "error": NaN,
+              "covers": false
+            }
+          ],
+          "range_covers_truth": false,
+          "range_width": 0.029075052792567956,
+          "truth_by_segment": {
+            "kerbside": -0.06462146662968736,
+            "motorway": -0.030729403072063958,
+            "retail": -0.11758806786518582,
+            "urban_hub": -0.07936994244199999
+          },
+          "decision_correct": true
+        },
+        "trial": {
+          "revenue_eur": {
+            "truth": -127.56245952012692,
+            "estimate": -119.32139677633984,
+            "covers": true
+          },
+          "offpeak_share": {
+            "truth": 0.04770907775019901,
+            "estimate": 0.04253242983314442,
+            "covers": false
+          },
+          "log_peak_sessions": {
+            "truth": -0.061875403718087515,
+            "estimate": -0.06054747419186972,
+            "covers": true
+          },
+          "true_net_value_per_site_day": -147.2670358681106,
+          "decision_correct": true
+        },
+        "competitor": {
+          "available": true,
+          "synthetic_control": {
+            "truth": -0.12754662611143555,
+            "estimate": 0.06492165524655037,
+            "covers": true
+          },
+          "pooled": {
+            "truth": -0.14230868879111697,
+            "estimate": NaN,
+            "covers": false
+          }
+        },
+        "forecast": {
+          "months": 11,
+          "mape_country": 0.0827731084774337,
+          "mape_total": 0.038845705611820464,
+          "bias_total": 0.005838298330514968,
+          "coverage_country": 0.743801652892562,
+          "coverage_total": 0.0,
+          "nominal": 0.8,
+          "true_total_gwh": 500.018015,
+          "forecast_total_gwh": 497.1157052082101
+        },
+        "rollout": {
+          "oracle_npv_eur": 505503040.0453576,
+          "plans": {
+            "highest_traffic": {
+              "true_npv_eur": 230288594.48324257,
+              "expected_npv_eur": 300000720.78658116,
+              "regret_eur": 275214445.562115,
+              "share_of_oracle": 0.4555632236407111
+            },
+            "expected_npv_greedy": {
+              "true_npv_eur": 370386303.791828,
+              "expected_npv_eur": 432198853.9101018,
+              "regret_eur": 135116736.2535296,
+              "share_of_oracle": 0.732708360682844
+            },
+            "optimised": {
+              "true_npv_eur": 372182137.4311013,
+              "expected_npv_eur": 454665591.2657469,
+              "regret_eur": 133320902.61425626,
+              "share_of_oracle": 0.7362609281196535
+            },
+            "optimised_risk": {
+              "true_npv_eur": 370793931.1663551,
+              "expected_npv_eur": 452725457.7920459,
+              "regret_eur": 134709108.8790025,
+              "share_of_oracle": 0.7335147403526685
+            }
+          },
+          "rank_correlation_npv": 0.6397627112491967,
+          "coverage_p10_p90": 0.825
+        }
+      },
+      "gate": {
+        "passed": false,
+        "checks": [
+          {
+            "check": "price change: range covers the truth",
+            "passed": false,
+            "detail": "truth -0.078"
+          },
+          {
+            "check": "price change: two-way fixed effects misses (the trap is armed)",
+            "passed": true,
+            "detail": "twfe error +0.086"
+          },
+          {
+            "check": "trial: intervals cover the truth",
+            "passed": true,
+            "detail": "2 of 3"
+          },
+          {
+            "check": "trial: decision matches the truth",
+            "passed": true,
+            "detail": "true net -147 EUR"
+          },
+          {
+            "check": "competitor: network-wide interval covers the truth",
+            "passed": false,
+            "detail": "truth -0.142"
+          },
+          {
+            "check": "forecast: country MAPE",
+            "passed": false,
+            "detail": "8.3%"
+          },
+          {
+            "check": "forecast: interval coverage",
+            "passed": true,
+            "detail": "74%"
+          },
+          {
+            "check": "rollout: share of the oracle's NPV",
+            "passed": false,
+            "detail": "73%"
+          },
+          {
+            "check": "rollout: beats highest_traffic",
+            "passed": true,
+            "detail": ""
+          }
+        ]
+      }
+    },
+    "random-increase": {
+      "seconds": 149,
+      "exit": 1,
+      "evaluation": {
+        "price_change": {
+          "truth_log": -0.06890140353846652,
+          "methods": [
+            {
+              "method": "before_after",
+              "estimate": 0.046239786329901736,
+              "error": 0.11514118986836826,
+              "covers": false
+            },
+            {
+              "method": "twfe",
+              "estimate": -0.05878141035017149,
+              "error": 0.010119993188295033,
+              "covers": true
+            },
+            {
+              "method": "imputation_parallel_trends",
+              "estimate": -0.06005619438739878,
+              "error": 0.008845209151067741,
+              "covers": true
+            },
+            {
+              "method": "synthetic_did",
+              "estimate": -0.0650965460841649,
+              "error": 0.003804857454301619,
+              "covers": true
+            },
+            {
+              "method": "trend_imputation",
+              "estimate": NaN,
+              "error": NaN,
+              "covers": false
+            }
+          ],
+          "range_covers_truth": true,
+          "range_width": 0.03507085001527261,
+          "truth_by_segment": {
+            "kerbside": -0.05629424326408986,
+            "motorway": -0.02893518861006852,
+            "retail": -0.1035106211309199,
+            "urban_hub": -0.069331001427915
+          },
+          "decision_correct": true
+        },
+        "trial": {
+          "revenue_eur": {
+            "truth": -104.5853425050961,
+            "estimate": -118.62816637502534,
+            "covers": true
+          },
+          "offpeak_share": {
+            "truth": 0.04805143102916614,
+            "estimate": 0.045016110334815104,
+            "covers": false
+          },
+          "log_peak_sessions": {
+            "truth": -0.061875403718087515,
+            "estimate": -0.05909436532152995,
+            "covers": true
+          },
+          "true_net_value_per_site_day": -121.34700766346714,
+          "decision_correct": true
+        },
+        "competitor": {
+          "available": true,
+          "synthetic_control": {
+            "truth": -0.1489655979653578,
+            "estimate": -0.3269064993515178,
+            "covers": false
+          },
+          "pooled": {
+            "truth": -0.1460309752529111,
+            "estimate": NaN,
+            "covers": false
+          }
+        },
+        "forecast": {
+          "months": 11,
+          "mape_country": 0.04568212312540812,
+          "mape_total": 0.028462930291206834,
+          "bias_total": -0.029902601135421536,
+          "coverage_country": 0.5537190082644629,
+          "coverage_total": 0.0,
+          "nominal": 0.8,
+          "true_total_gwh": 451.338115,
+          "forecast_total_gwh": 465.2503094310481
+        },
+        "rollout": {
+          "oracle_npv_eur": 446394214.95836985,
+          "plans": {
+            "highest_traffic": {
+              "true_npv_eur": 233838827.72538337,
+              "expected_npv_eur": 309484051.33965015,
+              "regret_eur": 212555387.23298648,
+              "share_of_oracle": 0.5238392879871682
+            },
+            "expected_npv_greedy": {
+              "true_npv_eur": 344168828.4944394,
+              "expected_npv_eur": 446708984.648222,
+              "regret_eur": 102225386.46393043,
+              "share_of_oracle": 0.7709975106342634
+            },
+            "optimised": {
+              "true_npv_eur": 339926372.5930192,
+              "expected_npv_eur": 459194441.1852491,
+              "regret_eur": 106467842.36535066,
+              "share_of_oracle": 0.7614936780144436
+            },
+            "optimised_risk": {
+              "true_npv_eur": 339926372.5930192,
+              "expected_npv_eur": 459194441.1852491,
+              "regret_eur": 106467842.36535066,
+              "share_of_oracle": 0.7614936780144436
+            }
+          },
+          "rank_correlation_npv": 0.7033058180131726,
+          "coverage_p10_p90": 0.8321428571428572
+        }
+      },
+      "gate": {
+        "passed": false,
+        "checks": [
+          {
+            "check": "price change: range covers the truth",
+            "passed": true,
+            "detail": "truth -0.069"
+          },
+          {
+            "check": "price change: two-way fixed effects misses (the trap is armed)",
+            "passed": false,
+            "detail": "twfe error +0.010"
+          },
+          {
+            "check": "trial: intervals cover the truth",
+            "passed": true,
+            "detail": "2 of 3"
+          },
+          {
+            "check": "trial: decision matches the truth",
+            "passed": true,
+            "detail": "true net -121 EUR"
+          },
+          {
+            "check": "competitor: network-wide interval covers the truth",
+            "passed": false,
+            "detail": "truth -0.146"
+          },
+          {
+            "check": "forecast: country MAPE",
+            "passed": true,
+            "detail": "4.6%"
+          },
+          {
+            "check": "forecast: interval coverage",
+            "passed": true,
+            "detail": "55%"
+          },
+          {
+            "check": "rollout: share of the oracle's NPV",
+            "passed": false,
+            "detail": "76%"
+          },
+          {
+            "check": "rollout: beats highest_traffic",
+            "passed": true,
+            "detail": ""
+          }
+        ]
+      }
+    },
+    "segment-elasticity-spread": {
+      "seconds": 209,
+      "exit": 1,
+      "evaluation": {
+        "price_change": {
+          "truth_log": -0.10181093430951169,
+          "methods": [
+            {
+              "method": "before_after",
+              "estimate": 0.039610815802714416,
+              "error": 0.1414217501122261,
+              "covers": false
+            },
+            {
+              "method": "twfe",
+              "estimate": -0.022498431582493733,
+              "error": 0.07931250272701795,
+              "covers": false
+            },
+            {
+              "method": "imputation_parallel_trends",
+              "estimate": -0.02051694508283432,
+              "error": 0.08129398922667737,
+              "covers": false
+            },
+            {
+              "method": "synthetic_did",
+              "estimate": -0.05186985817443634,
+              "error": 0.04994107613507535,
+              "covers": false
+            },
+            {
+              "method": "trend_imputation",
+              "estimate": NaN,
+              "error": NaN,
+              "covers": false
+            }
+          ],
+          "range_covers_truth": false,
+          "range_width": 0.034121676183791666,
+          "truth_by_segment": {
+            "kerbside": -0.046230616567256896,
+            "motorway": -0.004794695376899287,
+            "retail": -0.1679806448579697,
+            "urban_hub": -0.1279790131880469
+          },
+          "decision_correct": true
+        },
+        "trial": {
+          "revenue_eur": {
+            "truth": -100.3689782887679,
+            "estimate": -112.27706050276912,
+            "covers": true
+          },
+          "offpeak_share": {
+            "truth": 0.04839378430813327,
+            "estimate": 0.04275779889182168,
+            "covers": false
+          },
+          "log_peak_sessions": {
+            "truth": -0.061875403718087515,
+            "estimate": -0.06743528991228236,
+            "covers": true
+          },
+          "true_net_value_per_site_day": -116.20187581526969,
+          "decision_correct": true
+        },
+        "competitor": {
+          "available": true,
+          "synthetic_control": {
+            "truth": -0.15189617611295095,
+            "estimate": -0.06449539937970393,
+            "covers": true
+          },
+          "pooled": {
+            "truth": -0.15216639462473655,
+            "estimate": -0.1598651297061596,
+            "covers": true
+          }
+        },
+        "forecast": {
+          "months": 11,
+          "mape_country": 0.02959867851379672,
+          "mape_total": 0.01663339322977669,
+          "bias_total": -0.014241391773846312,
+          "coverage_country": 0.7107438016528925,
+          "coverage_total": 0.0,
+          "nominal": 0.8,
+          "true_total_gwh": 422.374464,
+          "forecast_total_gwh": 428.476566651598
+        },
+        "rollout": {
+          "oracle_npv_eur": 474658590.1214764,
+          "plans": {
+            "highest_traffic": {
+              "true_npv_eur": 243546397.40608034,
+              "expected_npv_eur": 303051620.5617656,
+              "regret_eur": 231112192.71539608,
+              "share_of_oracle": 0.5130980508406074
+            },
+            "expected_npv_greedy": {
+              "true_npv_eur": 385095190.79019076,
+              "expected_npv_eur": 474128179.5322445,
+              "regret_eur": 89563399.33128566,
+              "share_of_oracle": 0.8113098526071881
+            },
+            "optimised": {
+              "true_npv_eur": 376763463.8269656,
+              "expected_npv_eur": 489509422.24342585,
+              "regret_eur": 97895126.29451084,
+              "share_of_oracle": 0.7937567583693005
+            },
+            "optimised_risk": {
+              "true_npv_eur": 375782859.5422445,
+              "expected_npv_eur": 488741231.17484206,
+              "regret_eur": 98875730.57923192,
+              "share_of_oracle": 0.7916908434040406
+            }
+          },
+          "rank_correlation_npv": 0.7350629552070472,
+          "coverage_p10_p90": 0.8421428571428572
+        }
+      },
+      "gate": {
+        "passed": false,
+        "checks": [
+          {
+            "check": "price change: range covers the truth",
+            "passed": false,
+            "detail": "truth -0.102"
+          },
+          {
+            "check": "price change: two-way fixed effects misses (the trap is armed)",
+            "passed": true,
+            "detail": "twfe error +0.079"
+          },
+          {
+            "check": "trial: intervals cover the truth",
+            "passed": true,
+            "detail": "2 of 3"
+          },
+          {
+            "check": "trial: decision matches the truth",
+            "passed": true,
+            "detail": "true net -116 EUR"
+          },
+          {
+            "check": "competitor: network-wide interval covers the truth",
+            "passed": true,
+            "detail": "truth -0.152"
+          },
+          {
+            "check": "forecast: country MAPE",
+            "passed": true,
+            "detail": "3.0%"
+          },
+          {
+            "check": "forecast: interval coverage",
+            "passed": true,
+            "detail": "71%"
+          },
+          {
+            "check": "rollout: share of the oracle's NPV",
+            "passed": false,
+            "detail": "79%"
+          },
+          {
+            "check": "rollout: beats highest_traffic",
+            "passed": true,
+            "detail": ""
+          }
+        ]
+      }
+    },
+    "small-network-faint-signal": {
+      "seconds": 114,
+      "exit": 0,
+      "evaluation": {
+        "price_change": {
+          "truth_log": -0.038526640670003,
+          "methods": [
+            {
+              "method": "before_after",
+              "estimate": 0.09337217708248476,
+              "error": 0.13189881775248774,
+              "covers": false
+            },
+            {
+              "method": "twfe",
+              "estimate": 0.0343316385951099,
+              "error": 0.0728582792651129,
+              "covers": false
+            },
+            {
+              "method": "imputation_parallel_trends",
+              "estimate": 0.034938307939162284,
+              "error": 0.07346494860916528,
+              "covers": false
+            },
+            {
+              "method": "synthetic_did",
+              "estimate": 0.006346144932116754,
+              "error": 0.044872785602119755,
+              "covers": false
+            },
+            {
+              "method": "trend_imputation",
+              "estimate": -0.03939505567483517,
+              "error": -0.0008684150048321737,
+              "covers": true
+            }
+          ],
+          "range_covers_truth": true,
+          "range_width": 0.1127916429218818,
+          "truth_by_segment": {
+            "kerbside": -0.03303362790748716,
+            "motorway": -0.016133259340195834,
+            "retail": -0.057166112076771004,
+            "urban_hub": -0.044894996903902966
+          },
+          "decision_correct": true
+        },
+        "trial": {
+          "revenue_eur": {
+            "truth": -108.41780130059126,
+            "estimate": -108.15698065317514,
+            "covers": true
+          },
+          "offpeak_share": {
+            "truth": 0.04813294371463451,
+            "estimate": 0.0461554581195799,
+            "covers": true
+          },
+          "log_peak_sessions": {
+            "truth": -0.06187540371808752,
+            "estimate": -0.05776343141510963,
+            "covers": true
+          },
+          "true_net_value_per_site_day": -125.532079968902,
+          "decision_correct": true
+        },
+        "competitor": {
+          "available": true,
+          "synthetic_control": {
+            "truth": -0.18386431674593823,
+            "estimate": -0.23970490718472043,
+            "covers": true
+          },
+          "pooled": {
+            "truth": -0.14544913948607527,
+            "estimate": -0.2056789982437723,
+            "covers": true
+          }
+        },
+        "forecast": {
+          "months": 11,
+          "mape_country": 0.03534022912615715,
+          "mape_total": 0.02465920909280557,
+          "bias_total": -0.024261496201816946,
+          "coverage_country": 0.8099173553719008,
+          "coverage_total": 0.0,
+          "nominal": 0.8,
+          "true_total_gwh": 242.542905,
+          "forecast_total_gwh": 248.57367425377976
+        },
+        "rollout": {
+          "oracle_npv_eur": 345294843.8945719,
+          "plans": {
+            "highest_traffic": {
+              "true_npv_eur": 165673011.690405,
+              "expected_npv_eur": 236035444.60597244,
+              "regret_eur": 179621832.2041669,
+              "share_of_oracle": 0.47980158006932067
+            },
+            "expected_npv_greedy": {
+              "true_npv_eur": 262720198.6339892,
+              "expected_npv_eur": 378495268.9749162,
+              "regret_eur": 82574645.26058269,
+              "share_of_oracle": 0.7608575780361347
+            },
+            "optimised": {
+              "true_npv_eur": 285893766.2617704,
+              "expected_npv_eur": 399542000.01554507,
+              "regret_eur": 59401077.63280147,
+              "share_of_oracle": 0.8279699836730309
+            },
+            "optimised_risk": {
+              "true_npv_eur": 285893766.2617704,
+              "expected_npv_eur": 399542000.01554507,
+              "regret_eur": 59401077.63280147,
+              "share_of_oracle": 0.8279699836730309
+            }
+          },
+          "rank_correlation_npv": 0.729797507030968,
+          "coverage_p10_p90": 0.8476923076923077
+        }
+      },
+      "gate": {
+        "passed": true,
+        "checks": [
+          {
+            "check": "price change: range covers the truth",
+            "passed": true,
+            "detail": "truth -0.039"
+          },
+          {
+            "check": "price change: two-way fixed effects misses (the trap is armed)",
+            "passed": true,
+            "detail": "twfe error +0.073"
+          },
+          {
+            "check": "trial: intervals cover the truth",
+            "passed": true,
+            "detail": "3 of 3"
+          },
+          {
+            "check": "trial: decision matches the truth",
+            "passed": true,
+            "detail": "true net -126 EUR"
+          },
+          {
+            "check": "competitor: network-wide interval covers the truth",
+            "passed": true,
+            "detail": "truth -0.145"
+          },
+          {
+            "check": "forecast: country MAPE",
+            "passed": true,
+            "detail": "3.5%"
+          },
+          {
+            "check": "forecast: interval coverage",
+            "passed": true,
+            "detail": "81%"
+          },
+          {
+            "check": "rollout: share of the oracle's NPV",
+            "passed": true,
+            "detail": "83%"
+          },
+          {
+            "check": "rollout: beats highest_traffic",
+            "passed": true,
+            "detail": ""
+          }
+        ]
+      }
+    },
+    "trend-targeted-increase": {
+      "seconds": 355,
+      "exit": 1,
+      "evaluation": {
+        "price_change": {
+          "truth_log": -0.09281745262378617,
+          "methods": [
+            {
+              "method": "before_after",
+              "estimate": 0.054336939481537255,
+              "error": 0.14715439210532344,
+              "covers": false
+            },
+            {
+              "method": "twfe",
+              "estimate": 0.11370899404910706,
+              "error": 0.20652644667289322,
+              "covers": false
+            },
+            {
+              "method": "imputation_parallel_trends",
+              "estimate": 0.1266174261570924,
+              "error": 0.21943487878087858,
+              "covers": false
+            },
+            {
+              "method": "synthetic_did",
+              "estimate": 0.051331176988017764,
+              "error": 0.14414862961180394,
+              "covers": false
+            },
+            {
+              "method": "trend_imputation",
+              "estimate": NaN,
+              "error": NaN,
+              "covers": false
+            }
+          ],
+          "range_covers_truth": false,
+          "range_width": 0.03392153848846481,
+          "truth_by_segment": {
+            "kerbside": -0.0762771483755013,
+            "motorway": -0.036285497629283486,
+            "retail": -0.13890590726703553,
+            "urban_hub": -0.10019515081722885
+          },
+          "decision_correct": true
+        },
+        "trial": {
+          "revenue_eur": {
+            "truth": -111.52804045104585,
+            "estimate": -123.68669730293885,
+            "covers": true
+          },
+          "offpeak_share": {
+            "truth": 0.047757985361480036,
+            "estimate": 0.04467831105869335,
+            "covers": false
+          },
+          "log_peak_sessions": {
+            "truth": -0.061875403718087515,
+            "estimate": -0.06797645483346369,
+            "covers": true
+          },
+          "true_net_value_per_site_day": -127.93906012904229,
+          "decision_correct": true
+        },
+        "competitor": {
+          "available": true,
+          "synthetic_control": {
+            "truth": -0.22758763216358552,
+            "estimate": -0.2401335512709845,
+            "covers": true
+          },
+          "pooled": {
+            "truth": -0.15629958478290787,
+            "estimate": NaN,
+            "covers": false
+          }
+        },
+        "forecast": {
+          "months": 11,
+          "mape_country": 0.034852665520248655,
+          "mape_total": 0.016869556116154927,
+          "bias_total": -0.01800074480316116,
+          "coverage_country": 0.6694214876033058,
+          "coverage_total": 0.0,
+          "nominal": 0.8,
+          "true_total_gwh": 461.14866,
+          "forecast_total_gwh": 469.6018429337445
+        },
+        "rollout": {
+          "oracle_npv_eur": 505359638.2393408,
+          "plans": {
+            "highest_traffic": {
+              "true_npv_eur": 274057408.9792524,
+              "expected_npv_eur": 398470751.93880373,
+              "regret_eur": 231302229.26008838,
+              "share_of_oracle": 0.5423017357184696
+            },
+            "expected_npv_greedy": {
+              "true_npv_eur": 393816193.67258567,
+              "expected_npv_eur": 524268909.3798882,
+              "regret_eur": 111543444.56675512,
+              "share_of_oracle": 0.7792790794386163
+            },
+            "optimised": {
+              "true_npv_eur": 398624399.56330556,
+              "expected_npv_eur": 550529000.3093483,
+              "regret_eur": 106735238.67603523,
+              "share_of_oracle": 0.78879350347824
+            },
+            "optimised_risk": {
+              "true_npv_eur": 391508367.49368805,
+              "expected_npv_eur": 544285038.3475902,
+              "regret_eur": 113851270.74565274,
+              "share_of_oracle": 0.7747123788074816
+            }
+          },
+          "rank_correlation_npv": 0.7134904252502171,
+          "coverage_p10_p90": 0.8457142857142858
+        }
+      },
+      "gate": {
+        "passed": false,
+        "checks": [
+          {
+            "check": "price change: range covers the truth",
+            "passed": false,
+            "detail": "truth -0.093"
+          },
+          {
+            "check": "price change: two-way fixed effects misses (the trap is armed)",
+            "passed": true,
+            "detail": "twfe error +0.207"
+          },
+          {
+            "check": "trial: intervals cover the truth",
+            "passed": true,
+            "detail": "2 of 3"
+          },
+          {
+            "check": "trial: decision matches the truth",
+            "passed": true,
+            "detail": "true net -128 EUR"
+          },
+          {
+            "check": "competitor: network-wide interval covers the truth",
+            "passed": false,
+            "detail": "truth -0.156"
+          },
+          {
+            "check": "forecast: country MAPE",
+            "passed": true,
+            "detail": "3.5%"
+          },
+          {
+            "check": "forecast: interval coverage",
+            "passed": true,
+            "detail": "67%"
+          },
+          {
+            "check": "rollout: share of the oracle's NPV",
+            "passed": false,
+            "detail": "77%"
+          },
+          {
+            "check": "rollout: beats highest_traffic",
+            "passed": true,
+            "detail": ""
+          }
+        ]
+      }
+    },
+    "weak-trial-carryover": {
+      "seconds": 179,
+      "exit": 0,
+      "evaluation": {
+        "price_change": {
+          "truth_log": -0.07994412270880044,
+          "methods": [
+            {
+              "method": "before_after",
+              "estimate": 0.055426390694900116,
+              "error": 0.13537051340370054,
+              "covers": false
+            },
+            {
+              "method": "twfe",
+              "estimate": 0.018569316091827135,
+              "error": 0.09851343880062757,
+              "covers": false
+            },
+            {
+              "method": "imputation_parallel_trends",
+              "estimate": 0.023021836563284978,
+              "error": 0.10296595927208542,
+              "covers": false
+            },
+            {
+              "method": "synthetic_did",
+              "estimate": -0.011231956488011206,
+              "error": 0.06871216622078924,
+              "covers": false
+            },
+            {
+              "method": "trend_imputation",
+              "estimate": -0.08270232301027315,
+              "error": -0.0027582003014727102,
+              "covers": true
+            }
+          ],
+          "range_covers_truth": true,
+          "range_width": 0.09493265211330656,
+          "truth_by_segment": {
+            "kerbside": -0.06571880506448191,
+            "motorway": -0.031622575835954646,
+            "retail": -0.11971682175016876,
+            "urban_hub": -0.07706736548595082
+          },
+          "decision_correct": true
+        },
+        "trial": {
+          "revenue_eur": {
+            "truth": -61.34853629604236,
+            "estimate": -50.719240978829795,
+            "covers": true
+          },
+          "offpeak_share": {
+            "truth": 0.017179212750912415,
+            "estimate": 0.015105608636583294,
+            "covers": true
+          },
+          "log_peak_sessions": {
+            "truth": -0.020202707317519452,
+            "estimate": -0.019941157127558257,
+            "covers": true
+          },
+          "true_net_value_per_site_day": -67.42473560079323,
+          "decision_correct": true
+        },
+        "competitor": {
+          "available": true,
+          "synthetic_control": {
+            "truth": -0.18283493480396962,
+            "estimate": -0.14740852365862103,
+            "covers": true
+          },
+          "pooled": {
+            "truth": -0.14421214456469308,
+            "estimate": -0.13117476073743853,
+            "covers": true
+          }
+        },
+        "forecast": {
+          "months": 11,
+          "mape_country": 0.025639881271567546,
+          "mape_total": 0.015357454872269987,
+          "bias_total": -0.013479390907473077,
+          "coverage_country": 0.6611570247933884,
+          "coverage_total": 0.0,
+          "nominal": 0.8,
+          "true_total_gwh": 452.524888,
+          "forecast_total_gwh": 458.7079923411485
+        },
+        "rollout": {
+          "oracle_npv_eur": 472047658.00856495,
+          "plans": {
+            "highest_traffic": {
+              "true_npv_eur": 250990018.11252084,
+              "expected_npv_eur": 316925423.9730284,
+              "regret_eur": 221057639.8960441,
+              "share_of_oracle": 0.5317048265240346
+            },
+            "expected_npv_greedy": {
+              "true_npv_eur": 369708798.3085218,
+              "expected_npv_eur": 467757590.14741135,
+              "regret_eur": 102338859.70004314,
+              "share_of_oracle": 0.7832022721354412
+            },
+            "optimised": {
+              "true_npv_eur": 377664695.79597956,
+              "expected_npv_eur": 478367930.1467694,
+              "regret_eur": 94382962.21258539,
+              "share_of_oracle": 0.8000562853955037
+            },
+            "optimised_risk": {
+              "true_npv_eur": 377664695.79597956,
+              "expected_npv_eur": 478367930.1467694,
+              "regret_eur": 94382962.21258539,
+              "share_of_oracle": 0.8000562853955037
+            }
+          },
+          "rank_correlation_npv": 0.7526921711986297,
+          "coverage_p10_p90": 0.8578571428571429
+        }
+      },
+      "gate": {
+        "passed": true,
+        "checks": [
+          {
+            "check": "price change: range covers the truth",
+            "passed": true,
+            "detail": "truth -0.080"
+          },
+          {
+            "check": "price change: two-way fixed effects misses (the trap is armed)",
+            "passed": true,
+            "detail": "twfe error +0.099"
+          },
+          {
+            "check": "trial: intervals cover the truth",
+            "passed": true,
+            "detail": "3 of 3"
+          },
+          {
+            "check": "trial: decision matches the truth",
+            "passed": true,
+            "detail": "true net -67 EUR"
+          },
+          {
+            "check": "competitor: network-wide interval covers the truth",
+            "passed": true,
+            "detail": "truth -0.144"
+          },
+          {
+            "check": "forecast: country MAPE",
+            "passed": true,
+            "detail": "2.6%"
+          },
+          {
+            "check": "forecast: interval coverage",
+            "passed": true,
+            "detail": "66%"
+          },
+          {
+            "check": "rollout: share of the oracle's NPV",
+            "passed": true,
+            "detail": "80%"
+          },
+          {
+            "check": "rollout: beats highest_traffic",
+            "passed": true,
+            "detail": ""
+          }
+        ]
+      }
+    }
+  },
+  "summary": {
+    "worlds": 12,
+    "completed": 12,
+    "gate_passed": 4,
+    "price_change_range_covers": 0.5,
+    "price_change_decision_correct": 1.0,
+    "twfe_covers": 0.08333333333333333,
+    "trial_effects_covered": 1.0,
+    "trial_decision_correct": 1.0,
+    "competitor_pooled_covers": 0.5,
+    "forecast_mape_country": [
+      0.0488,
+      0.0385,
+      0.0416,
+      0.0385,
+      0.0386,
+      0.0405,
+      0.0828,
+      0.0457,
+      0.0296,
+      0.0353,
+      0.0349,
+      0.0256
+    ],
+    "forecast_coverage_country": [
+      0.521,
+      0.802,
+      0.835,
+      0.785,
+      0.694,
+      0.727,
+      0.744,
+      0.554,
+      0.711,
+      0.81,
+      0.669,
+      0.661
+    ],
+    "rollout_share_of_oracle": [
+      0.85,
+      0.816,
+      0.813,
+      0.776,
+      0.819,
+      0.526,
+      0.734,
+      0.761,
+      0.792,
+      0.828,
+      0.775,
+      0.8
+    ],
+    "rollout_beats_traffic": 1.0
+  }
+}
