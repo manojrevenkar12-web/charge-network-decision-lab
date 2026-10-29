@@ -36,9 +36,8 @@ def run_set(name: str, log: Any = print) -> dict[str, Any]:
         else:
             rec["error"] = (p.stderr or p.stdout)[-2000:]
         out["worlds"][w.stem] = rec
-        log(
-            f"{w.stem}: {'gate pass' if rec.get('gate', {}).get('passed') else 'gate fail' if 'gate' in rec else 'error'} ({rec['seconds']} s)"
-        )
+        state = "error" if "gate" not in rec else ("gate pass" if rec["gate"]["passed"] else "gate fail")
+        log(f"{w.stem}: {state} ({rec['seconds']} s)")
     out["summary"] = summarise(out["worlds"])
     dest = ROOT / "reports" / "heldout" / name
     dest.mkdir(parents=True, exist_ok=True)
